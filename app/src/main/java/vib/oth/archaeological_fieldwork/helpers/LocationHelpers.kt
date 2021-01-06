@@ -1,4 +1,4 @@
-package org.wit.placemark.helpers
+package vib.oth.archaeological_fieldwork.helpers
 
 import android.Manifest
 import android.annotation.SuppressLint

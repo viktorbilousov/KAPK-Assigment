@@ -1,4 +1,4 @@
-package org.wit.placemark.helpers
+package vib.oth.archaeological_fieldwork.helpers
 
 import android.app.Activity
 import android.content.Context
@@ -36,8 +36,8 @@ fun readImageFromPath(context: Context, path : String) : Bitmap? {
   val uri = Uri.parse(path)
   if (uri != null) {
     try {
-      val parcelFileDescriptor = context.getContentResolver().openFileDescriptor(uri, "r")
-      val fileDescriptor = parcelFileDescriptor?.getFileDescriptor()
+      val parcelFileDescriptor = context.contentResolver.openFileDescriptor(uri, "r")
+      val fileDescriptor = parcelFileDescriptor?.fileDescriptor
       bitmap = BitmapFactory.decodeFileDescriptor(fileDescriptor)
       parcelFileDescriptor?.close()
     } catch (e: Exception) {

@@ -1,4 +1,4 @@
-package org.wit.placemark.helpers
+package vib.oth.archaeological_fieldwork.helpers
 
 import android.content.Context
 import android.util.Log
