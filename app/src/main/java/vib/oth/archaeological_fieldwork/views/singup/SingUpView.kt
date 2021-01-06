@@ -2,21 +2,18 @@ package vib.oth.archaeological_fieldwork.views.singup
 
 import android.os.Bundle
 import android.view.View
-import kotlinx.android.synthetic.main.activity_login.view.*
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_register.*
+import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
-import org.wit.placemark.views.login.LoginPresenter
 import vib.oth.archaeological_fieldwork.R
-import vib.oth.archaeological_fieldwork.models.User
+import vib.oth.archaeological_fieldwork.models.Gender
 import vib.oth.archaeological_fieldwork.views.BaseView
-import kotlin.random.Random
+
 
 class SingUpView : BaseView() {
 
   lateinit var presenter: SingUpPresenter
-
-  val user : User = User();
-
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -26,13 +23,18 @@ class SingUpView : BaseView() {
 
     presenter = initPresenter(SingUpPresenter(this)) as SingUpPresenter
 
-    addUserImage.setOnClickListener {
-        presenter.doSelectImage()
-    }
-    email.setText( "${java.util.Random().nextInt(100)}test@test.com")
-    name.setText("test@test.com")
-    password.setText("12345678")
+    avatar.setImageResource(R.mipmap.avatar);
 
+    avatar.setOnClickListener {
+      presenter.doSelectImage()
+      info("end select")
+    }
+
+    if(presenter.app.TEST) {
+      email.setText("${java.util.Random().nextInt(100)}test@test.com")
+      name.setText("test@test.com")
+      password.setText("12345678")
+    }
 
     register.setOnClickListener {
       val email = email.text.toString()
@@ -43,11 +45,19 @@ class SingUpView : BaseView() {
       else if(email == "") toast("Please enter email")
       else if(password == "") toast("Please enter password")
       else{
-        user.name = name;
-        user.email = email
-        presenter.doRegisterAndSingUp(user, password)
+        presenter.doRegisterAndSingUp(name, email, password)
       }
     }
+
+    toggle.check(gender_man.id)
+
+    gender_girl.setOnClickListener {
+      presenter.setGender(Gender.GIRL);
+    }
+    gender_man.setOnClickListener {
+      presenter.setGender(Gender.MAN);
+    }
+
 
   }
 
@@ -58,4 +68,9 @@ class SingUpView : BaseView() {
   override fun hideProgress() {
     progressBar.visibility = View.GONE
   }
+
+  fun updateImage(){
+        Glide.with(this).load(presenter.newUser.image).into(avatar);
+  }
+
 }

@@ -1,8 +1,10 @@
 package vib.oth.archaeological_fieldwork.views.singup
 
+import android.content.Intent
 import com.google.firebase.auth.FirebaseAuth
 import org.jetbrains.anko.toast
-import org.wit.placemark.helpers.showImagePicker
+import vib.oth.archaeological_fieldwork.helpers.showImagePicker
+import vib.oth.archaeological_fieldwork.models.Gender
 import vib.oth.archaeological_fieldwork.models.User
 import vib.oth.archaeological_fieldwork.store.firebase.SitesFireStore
 import vib.oth.archaeological_fieldwork.store.firebase.UsersFireStore
@@ -16,18 +18,23 @@ class SingUpPresenter(view: BaseView) : BasePresenter(view) {
   var auth: FirebaseAuth = FirebaseAuth.getInstance()
   var userStore: UsersFireStore? = null
   var sitesStore: SitesFireStore? = null
+  val newUser : User = User();
+  val singUpView: SingUpView
 
   init {
     if (app.sites is SitesFireStore) {
       userStore = app.users as UsersFireStore
       sitesStore = app.sites as SitesFireStore
     }
+    singUpView = view as SingUpView
   }
 
 
-  fun doRegisterAndSingUp(user: User, password: String){
+  fun doRegisterAndSingUp(name: String, email: String, password: String){
     view?.showProgress()
-    auth.createUserWithEmailAndPassword(user.email, password)
+    newUser.email = email
+    newUser.name = name
+    auth.createUserWithEmailAndPassword(email, password)
         .addOnCompleteListener(view!!) { task ->
           if (task.isSuccessful) {
             if (sitesStore != null) {
@@ -35,7 +42,7 @@ class SingUpPresenter(view: BaseView) : BasePresenter(view) {
                 view?.hideProgress()
                 if(userStore != null) {
                   userStore!!.fetch {
-                    userStore?.create(user);
+                    userStore?.create(newUser);
                     view?.navigateTo(VIEW.LOGIN)
                   }
                 }else {
@@ -77,19 +84,23 @@ class SingUpPresenter(view: BaseView) : BasePresenter(view) {
         }
   }
 
-  fun addNewUser(user: User) {
-    if(userStore != null) {
-      userStore!!.fetch {
-        userStore?.create(user);
-      }
-    }else {
-      view?.toast("Sign Up Failed: cannt fetch user")
-    }
-  }
 
   fun doSelectImage() {
     view?.let {
       showImagePicker(view!!, IMAGE_REQUEST)
     }
+  }
+
+  override fun doActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    when (requestCode) {
+      IMAGE_REQUEST -> {
+        newUser.image = data.data.toString()
+        singUpView.updateImage()
+      }
+    }
+  }
+
+  fun setGender(gender: Gender) {
+    newUser.gender = gender;
   }
 }

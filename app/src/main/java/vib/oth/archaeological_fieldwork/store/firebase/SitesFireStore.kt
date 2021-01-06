@@ -7,7 +7,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
-import org.wit.placemark.helpers.readImageFromPath
+import vib.oth.archaeological_fieldwork.helpers.readImageFromPath
 import vib.oth.archaeological_fieldwork.models.Site
 import java.io.ByteArrayOutputStream
 import java.io.File

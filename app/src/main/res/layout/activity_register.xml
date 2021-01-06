@@ -37,7 +37,7 @@
 
 
       <ImageView
-          android:id="@+id/imageView"
+          android:id="@+id/avatar"
           android:layout_width="94dp"
           android:layout_height="79dp"
           android:layout_marginTop="70dp"
@@ -45,19 +45,7 @@
           app:layout_constraintHorizontal_bias="0.04"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent"
-          tools:srcCompat="@tools:sample/avatars" />
-
-      <Button
-          android:id="@+id/addUserImage"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="142dp"
-          android:layout_marginTop="61dp"
-          android:layout_marginEnd="141dp"
-          android:text="Add Photo"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/password" />
+          tools:src="@mipmap/avatar" />
 
       <ProgressBar
           android:id="@+id/progressBar"
@@ -103,11 +91,13 @@
           android:id="@+id/register"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:layout_marginTop="27dp"
+          android:layout_marginStart="156dp"
+          android:layout_marginTop="136dp"
+          android:layout_marginEnd="167dp"
           android:text="Register"
-          app:layout_constraintEnd_toEndOf="@+id/addUserImage"
-          app:layout_constraintStart_toStartOf="@+id/addUserImage"
-          app:layout_constraintTop_toBottomOf="@+id/addUserImage" />
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/password" />
 
       <EditText
           android:id="@+id/name"
@@ -121,7 +111,7 @@
           android:inputType="textEmailAddress"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/imageView" />
+          app:layout_constraintTop_toBottomOf="@+id/avatar" />
 
       <LinearLayout
           android:layout_width="242dp"
@@ -146,7 +136,7 @@
             android:orientation="horizontal">
 
           <RadioButton
-              android:id="@+id/search"
+              android:id="@+id/gender_man"
               android:layout_width="0dp"
               android:layout_height="match_parent"
               android:layout_marginStart="1dp"
@@ -159,10 +149,11 @@
               android:gravity="center"
               android:text="@string/gender_man"
               android:textColor="@color/white"
-              android:textSize="32sp" />
+              android:textSize="32sp"
+              />
 
           <RadioButton
-              android:id="@+id/offer"
+              android:id="@+id/gender_girl"
               android:layout_width="0dp"
               android:layout_height="match_parent"
               android:layout_marginTop="1dp"

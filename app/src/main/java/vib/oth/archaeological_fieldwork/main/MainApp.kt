@@ -17,6 +17,9 @@ class MainApp : Application(), AnkoLogger {
   lateinit var sites: BaseStore<Site>
   lateinit var users: BaseStore<User>
 
+  final val TEST : Boolean = true;
+
+
   override fun onCreate() {
     super.onCreate()
     sites = SitesFireStore(applicationContext)

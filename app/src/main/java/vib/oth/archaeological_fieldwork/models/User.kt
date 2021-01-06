@@ -23,7 +23,7 @@ data class User(
 ): Parcelable
 
 enum class Gender{
-  MAN, WOOMAN
+  MAN, GIRL
 }
 
 
