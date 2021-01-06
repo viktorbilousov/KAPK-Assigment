@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "158720692255",
+    "project_id": "archaeological-fieldwork-29d97",
+    "storage_bucket": "archaeological-fieldwork-29d97.appspot.com",
+    "firebase_url": "https://archaeological-fieldwork-29d97-default-rtdb.europe-west1.firebasedatabase.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:158720692255:android:bf0db07fd4129a5209c52a",
+        "android_client_info": {
+          "package_name": "vib.oth.archaeological_fieldwork"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "158720692255-to5jjthdna0sqq0bv1tbgjq20nedhh77.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxmjMeE5Mi6-OytDZZRUgapjzSCbcz8fw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "158720692255-to5jjthdna0sqq0bv1tbgjq20nedhh77.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

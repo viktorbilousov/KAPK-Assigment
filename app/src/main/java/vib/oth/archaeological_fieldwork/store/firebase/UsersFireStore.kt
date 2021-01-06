@@ -7,6 +7,7 @@ import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 import org.wit.placemark.helpers.readImageFromPath
 import vib.oth.archaeological_fieldwork.models.User
 import java.io.ByteArrayOutputStream
@@ -27,10 +28,13 @@ class UsersFireStore(val context: Context) : BaseStore<User>, AnkoLogger {
   }
 
   override fun create(user: User) {
+    info("create user $user")
     val key = db.child("users").push().key
+    info("key = $key")
     key?.let {
       user.fbId = key
       users.add(user)
+      info("user = $user")
 //      db.child("users").child(userId).child("sites").child(key).setValue(site)
       db.child("users").child(key).setValue(user)
       updateImage(user)
@@ -47,6 +51,7 @@ class UsersFireStore(val context: Context) : BaseStore<User>, AnkoLogger {
       foundUser.image = user.image
       foundUser.notes = user.notes
       foundUser.visitedSites = user.visitedSites
+      foundUser.gender = user.gender;
     }
 
 //    db.child("users").child(userId).child("Users").child(User.fbId).setValue(User)
@@ -104,13 +109,15 @@ class UsersFireStore(val context: Context) : BaseStore<User>, AnkoLogger {
   }
 
 
-  override fun fetch(UsersReady: () -> Unit) {
+  override fun fetch(ready: () -> Unit) {
+    info("fetching Users")
     val valueEventListener = object : ValueEventListener {
       override fun onCancelled(dataSnapshot: DatabaseError) {
       }
       override fun onDataChange(dataSnapshot: DataSnapshot) {
         dataSnapshot.children.mapNotNullTo(users) { it.getValue(User::class.java) }
-        UsersReady()
+        info("sites fetching OK")
+        ready()
       }
     }
     userId = FirebaseAuth.getInstance().currentUser!!.uid

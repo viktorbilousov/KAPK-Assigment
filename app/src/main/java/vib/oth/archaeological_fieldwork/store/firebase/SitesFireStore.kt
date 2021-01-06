@@ -2,11 +2,11 @@ package vib.oth.archaeological_fieldwork.store.firebase
 
 import android.content.Context
 import android.graphics.Bitmap
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 import org.wit.placemark.helpers.readImageFromPath
 import vib.oth.archaeological_fieldwork.models.Site
 import java.io.ByteArrayOutputStream
@@ -104,13 +104,15 @@ class SitesFireStore(val context: Context) : BaseStore<Site>, AnkoLogger {
   }
 
 
-  override fun fetch(sitesReady: () -> Unit) {
+  override fun fetch(ready: () -> Unit) {
+    info("fetching Sites")
     val valueEventListener = object : ValueEventListener {
       override fun onCancelled(dataSnapshot: DatabaseError) {
       }
       override fun onDataChange(dataSnapshot: DataSnapshot) {
         dataSnapshot.children.mapNotNullTo(sites) { it.getValue(Site::class.java) }
-        sitesReady()
+        info("sites fetching OK")
+        ready()
       }
     }
     db = FirebaseDatabase.getInstance().reference

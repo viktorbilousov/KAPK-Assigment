@@ -6,12 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import org.jetbrains.anko.AnkoLogger
 import vib.oth.archaeological_fieldwork.views.login.LoginView
+import vib.oth.archaeological_fieldwork.views.singup.SingUpView
 
 val IMAGE_REQUEST = 1
 val LOCATION_REQUEST = 2
 
 enum class VIEW {
-  LOCATION, PLACEMARK, MAPS, LIST, LOGIN
+  LOCATION, PLACEMARK, MAPS, LIST, LOGIN, REGISTER
 }
 
 abstract class BaseView() : AppCompatActivity(), AnkoLogger {
@@ -26,6 +27,7 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
 //      VIEW.MAPS -> intent = Intent(this, PlacemarkMapView::class.java)
 //      VIEW.LIST -> intent = Intent(this, PlacemarkListView::class.java)
       VIEW.LOGIN -> intent = Intent(this, LoginView::class.java)
+      VIEW.REGISTER -> intent = Intent(this, SingUpView::class.java)
     }
     // ?
     if (key != "") {
@@ -36,8 +38,8 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
 
 
   fun init(toolbar: Toolbar, upEnabled: Boolean) {
-//    toolbar.title = title
-//    setSupportActionBar(toolbar)
+    toolbar.title = title
+    setSupportActionBar(toolbar)
     //https://developer.android.com/reference/android/app/ActionBar
     //Set whether home should be displayed as an "up" affordance.
     supportActionBar?.setDisplayHomeAsUpEnabled(upEnabled)

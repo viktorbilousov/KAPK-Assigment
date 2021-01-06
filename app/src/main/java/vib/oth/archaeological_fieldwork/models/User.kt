@@ -1,9 +1,7 @@
 package vib.oth.archaeological_fieldwork.models
 
 import android.os.Parcelable
-import androidx.room.Embedded
 import androidx.room.Entity
-import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 
@@ -15,6 +13,7 @@ data class User(
     var name: String = "",
     var email: String = "",
     var image: String = "",
+    var gender : Gender = Gender.MAN,
 
     // Long -> id of SiteModel
     var visitedSites : MutableList<Long> = mutableListOf(),
@@ -22,5 +21,9 @@ data class User(
     var givenRating : MutableMap<Long, Int> = mutableMapOf(),
     var notes       : MutableMap<Long, String> = mutableMapOf()
 ): Parcelable
+
+enum class Gender{
+  MAN, WOOMAN
+}
 
 

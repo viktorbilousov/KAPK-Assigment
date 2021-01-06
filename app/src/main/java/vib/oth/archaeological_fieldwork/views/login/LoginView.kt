@@ -7,6 +7,7 @@ import org.jetbrains.anko.toast
 import org.wit.placemark.views.login.LoginPresenter
 import vib.oth.archaeological_fieldwork.R
 import vib.oth.archaeological_fieldwork.views.BaseView
+import vib.oth.archaeological_fieldwork.views.VIEW
 
 class LoginView : BaseView() {
 
@@ -20,15 +21,17 @@ class LoginView : BaseView() {
 
     presenter = initPresenter(LoginPresenter(this)) as LoginPresenter
 
-    signUp.setOnClickListener {
-      val email = email.text.toString()
-      val password = password.text.toString()
-      if (email == "" || password == "") {
-        toast("Please provide email + password")
-      }
-      else {
-        presenter.doSignUp(email,password)
-      }
+    register.setOnClickListener {
+
+      navigateTo(VIEW.REGISTER)
+//      val email = email.text.toString()
+//      val password = password.text.toString()
+//      if (email == "" || password == "") {
+//        toast("Please provide email + password")
+//      }
+//      else {
+//        presenter.doSignUp(email,password)
+//      }
     }
 
     logIn.setOnClickListener {

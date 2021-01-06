@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Archaeological-Fieldwork</string>
     <string name="select_image">Select Image</string>
+    <string name="gender_girl">G</string>
+    <string name="gender_man">M</string>
+    <string name="menu_cancel">Cancel</string>
+    <string name="menu_register">Register</string>
+    <string name="title_activity_register">Register</string>
 </resources>

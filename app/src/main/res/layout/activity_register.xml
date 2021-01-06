@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <com.google.android.material.appbar.AppBarLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/colorAccent"
+      android:fitsSystemWindows="true"
+      android:id="@+id/appBarLayout"
+      app:elevation="0dip"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@color/colorPrimary" />
+  </com.google.android.material.appbar.AppBarLayout>
+
+  <androidx.core.widget.NestedScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+
+
+      >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".views.login.LoginView">
+
+
+      <ImageView
+          android:id="@+id/imageView"
+          android:layout_width="94dp"
+          android:layout_height="79dp"
+          android:layout_marginTop="70dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.04"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          tools:srcCompat="@tools:sample/avatars" />
+
+      <Button
+          android:id="@+id/addUserImage"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="142dp"
+          android:layout_marginTop="61dp"
+          android:layout_marginEnd="141dp"
+          android:text="Add Photo"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/password" />
+
+      <ProgressBar
+          android:id="@+id/progressBar"
+          style="@style/Widget.AppCompat.ProgressBar"
+          android:layout_width="0dp"
+          android:layout_height="0dp"
+          android:layout_marginStart="103dp"
+          android:layout_marginTop="50dp"
+          android:layout_marginEnd="103dp"
+          android:layout_marginBottom="65dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/register" />
+
+      <EditText
+          android:id="@+id/email"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="20dp"
+          android:layout_marginBottom="14dp"
+          android:ems="10"
+          android:hint="E-mail*"
+          android:inputType="textEmailAddress"
+          app:layout_constraintBottom_toTopOf="@+id/password"
+          app:layout_constraintEnd_toEndOf="@+id/name"
+          app:layout_constraintStart_toStartOf="@+id/name"
+          app:layout_constraintTop_toBottomOf="@+id/name" />
+
+      <EditText
+          android:id="@+id/password"
+          android:layout_width="0dp"
+          android:layout_height="42dp"
+          android:layout_marginTop="14dp"
+          android:ems="10"
+          android:hint="Passwort*"
+          android:inputType="textPassword"
+          app:layout_constraintEnd_toEndOf="@+id/email"
+          app:layout_constraintStart_toStartOf="@+id/email"
+          app:layout_constraintTop_toBottomOf="@+id/email" />
+
+      <Button
+          android:id="@+id/register"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="27dp"
+          android:text="Register"
+          app:layout_constraintEnd_toEndOf="@+id/addUserImage"
+          app:layout_constraintStart_toStartOf="@+id/addUserImage"
+          app:layout_constraintTop_toBottomOf="@+id/addUserImage" />
+
+      <EditText
+          android:id="@+id/name"
+          android:layout_width="0dp"
+          android:layout_height="38dp"
+          android:layout_marginStart="23dp"
+          android:layout_marginTop="45dp"
+          android:layout_marginEnd="22dp"
+          android:ems="10"
+          android:hint="Name*"
+          android:inputType="textEmailAddress"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+      <LinearLayout
+          android:layout_width="242dp"
+          android:layout_height="78dp"
+          android:layout_marginTop="70dp"
+          android:orientation="vertical"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.77"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent">
+
+        <RadioGroup
+            android:id="@+id/toggle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp"
+            android:background="@drawable/pink_out_line"
+            android:checkedButton="@+id/offer"
+            android:orientation="horizontal">
+
+          <RadioButton
+              android:id="@+id/search"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:layout_marginStart="1dp"
+              android:layout_marginTop="1dp"
+              android:layout_marginBottom="1dp"
+              android:layout_weight="1"
+              android:background="@drawable/toggle_widget_background"
+              android:button="@null"
+              android:fontFamily="sans-serif"
+              android:gravity="center"
+              android:text="@string/gender_man"
+              android:textColor="@color/white"
+              android:textSize="32sp" />
+
+          <RadioButton
+              android:id="@+id/offer"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:layout_marginTop="1dp"
+              android:layout_marginEnd="1dp"
+              android:layout_marginBottom="1dp"
+              android:layout_weight="1"
+              android:background="@drawable/toggle_widget_background"
+              android:button="@null"
+              android:gravity="center"
+              android:text="@string/gender_girl"
+              android:textColor="@color/white"
+              android:textSize="32sp" />
+        </RadioGroup>
+
+      </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+  </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

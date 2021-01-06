@@ -1,6 +1,8 @@
 package vib.oth.archaeological_fieldwork.main
 
 import android.app.Application
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import vib.oth.archaeological_fieldwork.models.Site
@@ -8,6 +10,7 @@ import vib.oth.archaeological_fieldwork.models.User
 import vib.oth.archaeological_fieldwork.store.firebase.BaseStore
 import vib.oth.archaeological_fieldwork.store.firebase.SitesFireStore
 import vib.oth.archaeological_fieldwork.store.firebase.UsersFireStore
+
 
 class MainApp : Application(), AnkoLogger {
 
@@ -18,6 +21,7 @@ class MainApp : Application(), AnkoLogger {
     super.onCreate()
     sites = SitesFireStore(applicationContext)
     users = UsersFireStore(applicationContext)
+
     info("App started")
 //    setContentView(R.layout.activity_main)
   }
