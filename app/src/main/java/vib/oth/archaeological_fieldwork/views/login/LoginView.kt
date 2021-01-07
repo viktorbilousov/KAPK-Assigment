@@ -3,6 +3,11 @@ package vib.oth.archaeological_fieldwork.views.login
 import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_login.email
+import kotlinx.android.synthetic.main.activity_login.password
+import kotlinx.android.synthetic.main.activity_login.progressBar
+import kotlinx.android.synthetic.main.activity_login.register
+import kotlinx.android.synthetic.main.activity_login.toolbar
 import org.jetbrains.anko.toast
 import org.wit.placemark.views.login.LoginPresenter
 import vib.oth.archaeological_fieldwork.R
@@ -21,17 +26,14 @@ class LoginView : BaseView() {
 
     presenter = initPresenter(LoginPresenter(this)) as LoginPresenter
 
-    register.setOnClickListener {
+    if(presenter.app.TEST) {
+      email.setText("test@test.com")
+      password.setText("12345678")
+    }
 
+
+    register.setOnClickListener {
       navigateTo(VIEW.REGISTER)
-//      val email = email.text.toString()
-//      val password = password.text.toString()
-//      if (email == "" || password == "") {
-//        toast("Please provide email + password")
-//      }
-//      else {
-//        presenter.doSignUp(email,password)
-//      }
     }
 
     logIn.setOnClickListener {

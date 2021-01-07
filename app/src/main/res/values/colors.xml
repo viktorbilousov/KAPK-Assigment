@@ -12,4 +12,6 @@
     <color name="colorAccent">#4c90af</color>
     <color name="green">#4c90af</color>
     <color name="grey">#808080 </color>
+    <color name="nav_selected">#FFFF00</color>
+    <color name="nav_unselected">#FFBB86FC</color>
 </resources>

@@ -2,11 +2,16 @@ package vib.oth.archaeological_fieldwork.views
 
 import android.content.Intent
 import android.os.Parcelable
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 import vib.oth.archaeological_fieldwork.views.login.LoginView
 import vib.oth.archaeological_fieldwork.views.singup.SingUpView
+import vib.oth.archaeological_fieldwork.views.siteslist.SitesListPresenter
+import vib.oth.archaeological_fieldwork.views.siteslist.SitesListView
+
 
 val IMAGE_REQUEST = 1
 val LOCATION_REQUEST = 2
@@ -25,7 +30,7 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
 //      VIEW.LOCATION -> intent = Intent(this, EditLocationView::class.java)
 //      VIEW.PLACEMARK -> intent = Intent(this, PlacemarkView::class.java)
 //      VIEW.MAPS -> intent = Intent(this, PlacemarkMapView::class.java)
-//      VIEW.LIST -> intent = Intent(this, PlacemarkListView::class.java)
+      VIEW.LIST -> intent = Intent(this, SitesListView::class.java)
       VIEW.LOGIN -> intent = Intent(this, LoginView::class.java)
       VIEW.REGISTER -> intent = Intent(this, SingUpView::class.java)
     }
@@ -39,11 +44,22 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
 
   fun init(toolbar: Toolbar, upEnabled: Boolean) {
     toolbar.title = title
-    setSupportActionBar(toolbar)
     //https://developer.android.com/reference/android/app/ActionBar
     //Set whether home should be displayed as an "up" affordance.
+    setSupportActionBar(toolbar)
+
+    toolbar.setNavigationOnClickListener{
+      info("navigation on click event")
+      onBackPressed()
+    }
+
+    // todo - fix it
     supportActionBar?.setDisplayHomeAsUpEnabled(upEnabled)
 
+    toolbar.setNavigationOnClickListener{
+      info("navigation on click event")
+      onBackPressed()
+    }
 
 //    val user = FirebaseAuth.getInstance().currentUser
 //    if (user != null) {

@@ -43,7 +43,7 @@ class SingUpPresenter(view: BaseView) : BasePresenter(view) {
                 if(userStore != null) {
                   userStore!!.fetch {
                     userStore?.create(newUser);
-                    view?.navigateTo(VIEW.LOGIN)
+                    view?.navigateTo(VIEW.LIST)
                   }
                 }else {
                   view?.toast("Sign Up Failed: cannt fetch user")
@@ -52,7 +52,7 @@ class SingUpPresenter(view: BaseView) : BasePresenter(view) {
             } else {
               view?.hideProgress()
 //          view?.navigateTo(VIEW.LIST)
-              view?.navigateTo(VIEW.LOGIN)
+              view?.navigateTo(VIEW.LIST)
             }
           } else {
             view?.hideProgress()

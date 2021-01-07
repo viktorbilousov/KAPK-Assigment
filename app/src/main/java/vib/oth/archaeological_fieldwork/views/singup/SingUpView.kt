@@ -59,6 +59,7 @@ class SingUpView : BaseView() {
     }
 
 
+
   }
 
   override fun showProgress() {
