@@ -2,14 +2,17 @@ package vib.oth.archaeological_fieldwork.views
 
 import android.content.Intent
 import android.os.Parcelable
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_site_list.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import vib.oth.archaeological_fieldwork.R
+import vib.oth.archaeological_fieldwork.models.Site
 import vib.oth.archaeological_fieldwork.views.login.LoginView
 import vib.oth.archaeological_fieldwork.views.singup.SingUpView
-import vib.oth.archaeological_fieldwork.views.siteslist.SitesListPresenter
+import vib.oth.archaeological_fieldwork.views.siteslist.FavoritesSitesListView
 import vib.oth.archaeological_fieldwork.views.siteslist.SitesListView
 
 
@@ -17,7 +20,7 @@ val IMAGE_REQUEST = 1
 val LOCATION_REQUEST = 2
 
 enum class VIEW {
-  LOCATION, PLACEMARK, MAPS, LIST, LOGIN, REGISTER
+  MAPS, LIST, LOGIN, REGISTER, FAVORITES, PROFILE
 }
 
 abstract class BaseView() : AppCompatActivity(), AnkoLogger {
@@ -26,10 +29,12 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
 
   fun navigateTo(view: VIEW, code: Int = 0, key: String = "", value: Parcelable? = null) {
     var intent = Intent(this, LoginView::class.java)
+    info("navigate to ${view.name}")
     when (view) {
 //      VIEW.LOCATION -> intent = Intent(this, EditLocationView::class.java)
 //      VIEW.PLACEMARK -> intent = Intent(this, PlacemarkView::class.java)
 //      VIEW.MAPS -> intent = Intent(this, PlacemarkMapView::class.java)
+      VIEW.FAVORITES -> intent = Intent(this, FavoritesSitesListView::class.java)
       VIEW.LIST -> intent = Intent(this, SitesListView::class.java)
       VIEW.LOGIN -> intent = Intent(this, LoginView::class.java)
       VIEW.REGISTER -> intent = Intent(this, SingUpView::class.java)
@@ -39,6 +44,7 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
       intent.putExtra(key, value)
     }
     startActivityForResult(intent, code)
+    overridePendingTransition(0, 0) // disable animation
   }
 
 
@@ -77,6 +83,20 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
     setSupportActionBar(toolbar)
   }
 
+  fun initBottomToolbar(bottomNavigationView: BottomNavigationView, currentView: VIEW){
+    bottomNavigationView.setOnNavigationItemSelectedListener {
+      when(it.toString()){
+        getString(R.string.bottom_nav_discover) ->  if(currentView != VIEW.LIST) navigateTo(VIEW.LIST)
+        getString(R.string.bottom_nav_map) ->       if(currentView != VIEW.MAPS) navigateTo(VIEW.MAPS)
+        getString(R.string.bottom_nav_profile) ->   if(currentView != VIEW.PROFILE) navigateTo(VIEW.PROFILE)
+        getString(R.string.bottom_nav_favorites) -> if(currentView != VIEW.FAVORITES)navigateTo(VIEW.FAVORITES)
+        else -> return@setOnNavigationItemSelectedListener false
+      }
+      return@setOnNavigationItemSelectedListener true
+
+    }
+  }
+
   override fun onDestroy() {
     basePresenter?.onDestroy()
     super.onDestroy()
@@ -94,9 +114,11 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
     basePresenter?.doRequestPermissionsResult(requestCode, permissions, grantResults)
   }
 
+
 //  open fun showPlacemark(placemark: PlacemarkModel) {}
 //  open fun showPlacemarks(placemarks: List<PlacemarkModel>) {}
 //  open fun showLocation(location : Location) {}
   open fun showProgress() {}
   open fun hideProgress() {}
+  open fun showSites(sites: List<Site>){}
 }

@@ -9,7 +9,7 @@
         android:title="@string/bottom_nav_map"
         android:icon="@drawable/nav_map_sel"/>
     <item
-        android:id="@+id/settings"
+        android:id="@+id/favorites"
         android:title="@string/bottom_nav_favorites"
         android:icon="@drawable/nav_favorite_sel"/>
     <item

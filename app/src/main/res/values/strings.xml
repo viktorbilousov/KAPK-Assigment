@@ -12,4 +12,8 @@
     <string name="bottom_nav_map">Map</string>
     <string name="bottom_nav_favorites">Favorites</string>
     <string name="bottom_nav_profile">Profil</string>
+    <string name="favorite">Favorite</string>
+    <string name="visited">Visited</string>
+    <string name="details">Details</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

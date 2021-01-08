@@ -10,12 +10,14 @@ import vib.oth.archaeological_fieldwork.models.User
 import vib.oth.archaeological_fieldwork.store.firebase.BaseStore
 import vib.oth.archaeological_fieldwork.store.firebase.SitesFireStore
 import vib.oth.archaeological_fieldwork.store.firebase.UsersFireStore
+import java.util.*
 
 
 class MainApp : Application(), AnkoLogger {
 
   lateinit var sites: BaseStore<Site>
   lateinit var users: BaseStore<User>
+  lateinit var currentUser: User
 
   final val TEST : Boolean = true;
 
