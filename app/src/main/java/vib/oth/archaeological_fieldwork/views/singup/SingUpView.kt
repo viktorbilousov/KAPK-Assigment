@@ -32,14 +32,14 @@ class SingUpView : BaseView() {
 
     if(presenter.app.TEST) {
       email.setText("${java.util.Random().nextInt(100)}test@test.com")
-      name.setText("test@test.com")
+      textDescription.setText("test@test.com")
       password.setText("12345678")
     }
 
     register.setOnClickListener {
       val email = email.text.toString()
       val password = password.text.toString();
-      val name = name.text.toString();
+      val name = textDescription.text.toString();
 
       if(name == "") toast("Please enter your name")
       else if(email == "") toast("Please enter email")

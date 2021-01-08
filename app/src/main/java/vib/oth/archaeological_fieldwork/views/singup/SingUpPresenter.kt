@@ -43,6 +43,7 @@ class SingUpPresenter(view: BaseView) : BasePresenter(view) {
                 if(userStore != null) {
                   userStore!!.fetch {
                     userStore?.create(newUser);
+                    app.currentUser = userStore!!.findById(newUser.id)!!
                     view?.navigateTo(VIEW.LIST)
                   }
                 }else {
@@ -60,30 +61,6 @@ class SingUpPresenter(view: BaseView) : BasePresenter(view) {
           }
         }
   }
-
-  fun doSignUp(email: String, password: String) {
-    view?.showProgress()
-    auth.createUserWithEmailAndPassword(email, password)
-        .addOnCompleteListener(view!!) { task ->
-          if (task.isSuccessful) {
-            if (sitesStore != null) {
-              sitesStore!!.fetch {
-                view?.hideProgress()
-//            view?.navigateTo(VIEW.LIST)\
-                view?.navigateTo(VIEW.LOGIN)
-              }
-            } else {
-              view?.hideProgress()
-//          view?.navigateTo(VIEW.LIST)
-              view?.navigateTo(VIEW.LOGIN)
-            }
-          } else {
-            view?.hideProgress()
-            view?.toast("Sign Up Failed: ${task.exception?.message}")
-          }
-        }
-  }
-
 
   fun doSelectImage() {
     view?.let {

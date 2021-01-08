@@ -71,9 +71,9 @@
           android:hint="E-mail*"
           android:inputType="textEmailAddress"
           app:layout_constraintBottom_toTopOf="@+id/password"
-          app:layout_constraintEnd_toEndOf="@+id/name"
-          app:layout_constraintStart_toStartOf="@+id/name"
-          app:layout_constraintTop_toBottomOf="@+id/name" />
+          app:layout_constraintEnd_toEndOf="@+id/textDescription"
+          app:layout_constraintStart_toStartOf="@+id/textDescription"
+          app:layout_constraintTop_toBottomOf="@+id/textDescription" />
 
       <EditText
           android:id="@+id/password"
@@ -100,7 +100,7 @@
           app:layout_constraintTop_toBottomOf="@+id/password" />
 
       <EditText
-          android:id="@+id/name"
+          android:id="@+id/textDescription"
           android:layout_width="0dp"
           android:layout_height="38dp"
           android:layout_marginStart="23dp"
