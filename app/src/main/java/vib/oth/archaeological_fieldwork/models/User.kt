@@ -20,7 +20,20 @@ data class User(
     var favoriteSites : MutableList<Long> = mutableListOf(),
     var givenRating : MutableMap<Long, Int> = mutableMapOf(),
     var notes       : MutableMap<Long, String> = mutableMapOf()
-): Parcelable
+): Parcelable{
+  fun addVisitedSite(site: Site): Boolean{
+    val id = site.id;
+    if (!visitedSites.contains(id)) return visitedSites.add(id)
+    return false
+  }
+
+  fun addFavoriteSite(site: Site) : Boolean{
+    val id = site.id;
+    if (!favoriteSites.contains(id)) return favoriteSites.add(id)
+    return false
+  }
+
+}
 
 enum class Gender{
   MAN, GIRL

@@ -14,7 +14,7 @@ data class Site(
     var fbId : String = "",
     var name: String = "",
     var description: String = "",
-    var images: Array<String?> = arrayOfNulls(4),
+    var images: MutableList<String?> = MutableList(4) {null},
 
     @Embedded var raiting : Rating = Rating(),
     @Embedded var location : Location = Location()
