@@ -43,7 +43,7 @@ class SingUpPresenter(view: BaseView) : BasePresenter(view) {
                 if(userStore != null) {
                   userStore!!.fetch {
                     userStore?.create(newUser);
-                    app.currentUser = userStore!!.findById(newUser.id)!!
+                    app.setUser(userStore!!.findById(newUser.id)!!)
                     view?.navigateTo(VIEW.LIST)
                   }
                 }else {

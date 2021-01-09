@@ -16,4 +16,13 @@
     <string name="visited">Visited</string>
     <string name="details">Details</string>
     <string name="title_activity_maps">Map</string>
+    <string name="on_the_map">On the map</string>
+    <string name="images">Images</string>
+    <string name="your_notes">Your notes</string>
+    <string name="register_hint_e_mail">E-mail*</string>
+    <string name="register_hint_name">Name*</string>
+    <string name="register_hint_password">Passwort*</string>
+    <string name="edit_site_name_hint">Name*</string>
+    <string name="edit_site_description_hint">Description</string>
+    <string name="edit_site_notes_hint">Notes</string>
 </resources>

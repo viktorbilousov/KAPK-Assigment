@@ -1,179 +1,272 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-  <com.google.android.material.appbar.AppBarLayout
+
+  <ScrollView
+      android:id="@+id/scrollView2"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="@color/colorAccent"
-      android:fitsSystemWindows="true"
-      android:id="@+id/appBarLayout"
-      app:elevation="0dip"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:titleTextColor="@color/colorPrimary" />
-  </com.google.android.material.appbar.AppBarLayout>
-
-  <androidx.core.widget.NestedScrollView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-
-
-      >
+      android:layout_height="662dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".views.login.LoginView">
+        android:layout_height="wrap_content"
+        android:padding="16dp">
 
 
-      <ImageView
-          android:id="@+id/avatar"
-          android:layout_width="94dp"
-          android:layout_height="79dp"
-          android:layout_marginTop="70dp"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintHorizontal_bias="0.04"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent"
-          tools:src="@mipmap/avatar" />
-
-      <ProgressBar
-          android:id="@+id/progressBar"
-          style="@style/Widget.AppCompat.ProgressBar"
-          android:layout_width="0dp"
-          android:layout_height="0dp"
-          android:layout_marginStart="103dp"
-          android:layout_marginTop="50dp"
-          android:layout_marginEnd="103dp"
-          android:layout_marginBottom="65dp"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/register" />
+      <TextView
+          android:id="@+id/textRating"
+          android:layout_width="87dp"
+          android:layout_height="25dp"
+          android:gravity="center"
+          android:text="TextView"
+          app:layout_constraintBottom_toBottomOf="@+id/checkBoxIsVisited"
+          app:layout_constraintEnd_toStartOf="@+id/checkBoxIsVisited"
+          app:layout_constraintHorizontal_bias="0.5"
+          app:layout_constraintStart_toEndOf="@+id/checkBoxIsFavorite"
+          app:layout_constraintTop_toTopOf="@+id/checkBoxIsVisited"
+          app:layout_constraintVertical_bias="0.0" />
 
       <EditText
-          android:id="@+id/email"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="20dp"
-          android:layout_marginBottom="14dp"
-          android:ems="10"
-          android:hint="E-mail*"
-          android:inputType="textEmailAddress"
-          app:layout_constraintBottom_toTopOf="@+id/password"
-          app:layout_constraintEnd_toEndOf="@+id/textDescription"
-          app:layout_constraintStart_toStartOf="@+id/textDescription"
-          app:layout_constraintTop_toBottomOf="@+id/textDescription" />
-
-      <EditText
-          android:id="@+id/password"
-          android:layout_width="0dp"
-          android:layout_height="42dp"
-          android:layout_marginTop="14dp"
-          android:ems="10"
-          android:hint="Passwort*"
-          android:inputType="textPassword"
-          app:layout_constraintEnd_toEndOf="@+id/email"
-          app:layout_constraintStart_toStartOf="@+id/email"
-          app:layout_constraintTop_toBottomOf="@+id/email" />
-
-      <Button
-          android:id="@+id/register"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="156dp"
-          android:layout_marginTop="136dp"
-          android:layout_marginEnd="167dp"
-          android:text="Register"
+          android:id="@+id/textName"
+          android:layout_width="366dp"
+          android:layout_height="45dp"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:layout_marginEnd="8dp"
+          android:gravity="center"
+          android:hint="@string/edit_site_name_hint"
+          android:textSize="25sp"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/password" />
+          app:layout_constraintTop_toTopOf="parent" />
 
       <EditText
           android:id="@+id/textDescription"
           android:layout_width="0dp"
-          android:layout_height="38dp"
-          android:layout_marginStart="23dp"
-          android:layout_marginTop="45dp"
-          android:layout_marginEnd="22dp"
-          android:ems="10"
-          android:hint="Name*"
-          android:inputType="textEmailAddress"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/avatar" />
+          android:layout_height="107dp"
+          android:layout_marginTop="10dp"
+          android:hint="@string/edit_site_description_hint"
+          app:layout_constraintEnd_toEndOf="@+id/textName"
+          app:layout_constraintStart_toStartOf="@+id/textName"
+          app:layout_constraintTop_toBottomOf="@+id/textName"
+          android:gravity="center_horizontal"
+          android:textAlignment="textStart"
+          />
+
+      <TextView
+          android:id="@+id/text_loc_ing"
+          android:layout_width="52dp"
+          android:layout_height="13dp"
+          android:layout_marginStart="116dp"
+          android:layout_marginTop="16dp"
+          android:text="TextView"
+          android:textSize="10sp"
+          app:layout_constraintEnd_toEndOf="@+id/mapView"
+          app:layout_constraintHorizontal_bias="0.91"
+          app:layout_constraintStart_toStartOf="@+id/mapView"
+          app:layout_constraintTop_toBottomOf="@+id/mapView" />
+
+      <TextView
+          android:id="@+id/text_loc_inv"
+          android:layout_width="wrap_content"
+          android:layout_height="15dp"
+          android:layout_marginTop="17dp"
+          android:text="TextView"
+          android:textSize="10sp"
+          app:layout_constraintEnd_toEndOf="@+id/mapView"
+          app:layout_constraintHorizontal_bias="0.07"
+          app:layout_constraintStart_toStartOf="@+id/mapView"
+          app:layout_constraintTop_toBottomOf="@+id/mapView" />
+
+      <CheckBox
+          android:id="@+id/checkBoxIsVisited"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:button="@drawable/checkbox_visited"
+          android:text="@string/visited"
+          app:layout_constraintBottom_toTopOf="@+id/imageLayout"
+          app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+          app:layout_constraintHorizontal_bias="0.92"
+          app:layout_constraintStart_toStartOf="@+id/linearLayout"
+          app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+          app:layout_constraintVertical_bias="0.13" />
+
+      <CheckBox
+          android:id="@+id/checkBoxIsFavorite"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="66dp"
+          android:layout_marginBottom="364dp"
+          android:button="@drawable/checkbox_favorite"
+          android:text="@string/favorite"
+          app:layout_constraintBottom_toBottomOf="@+id/checkBoxIsVisited"
+          app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+          app:layout_constraintHorizontal_bias="0.05"
+          app:layout_constraintStart_toStartOf="@+id/linearLayout"
+          app:layout_constraintTop_toTopOf="@+id/checkBoxIsVisited"
+          app:layout_constraintVertical_bias="0.0" />
 
       <LinearLayout
-          android:layout_width="242dp"
-          android:layout_height="78dp"
-          android:layout_marginTop="70dp"
-          android:orientation="vertical"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintHorizontal_bias="0.77"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent">
+          android:id="@+id/linearLayout"
+          android:layout_width="363dp"
+          android:layout_height="95dp"
+          android:layout_marginTop="24dp"
+          android:button="@drawable/star_sel"
+          android:gravity="center"
+          android:orientation="horizontal"
+          app:layout_constraintEnd_toEndOf="@+id/textDescription"
+          app:layout_constraintHorizontal_bias="0.333"
+          app:layout_constraintStart_toStartOf="@+id/textDescription"
+          app:layout_constraintTop_toBottomOf="@+id/textDescription">
 
-        <RadioGroup
-            android:id="@+id/toggle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginBottom="0dp"
-            android:background="@drawable/pink_out_line"
-            android:checkedButton="@+id/offer"
-            android:orientation="horizontal">
+        <CheckBox
+            android:id="@+id/star1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20sp"
+            android:button="@drawable/star_sel"
+            android:scaleX="3"
+            android:scaleY="3" />
 
-          <RadioButton
-              android:id="@+id/gender_man"
-              android:layout_width="0dp"
-              android:layout_height="match_parent"
-              android:layout_marginStart="1dp"
-              android:layout_marginTop="1dp"
-              android:layout_marginBottom="1dp"
-              android:layout_weight="1"
-              android:background="@drawable/toggle_widget_background"
-              android:button="@null"
-              android:fontFamily="sans-serif"
-              android:gravity="center"
-              android:text="@string/gender_man"
-              android:textColor="@color/white"
-              android:textSize="32sp"
-              />
+        <CheckBox
+            android:id="@+id/star2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20sp"
+            android:button="@drawable/star_sel"
+            android:scaleX="3"
+            android:scaleY="3" />
 
-          <RadioButton
-              android:id="@+id/gender_girl"
-              android:layout_width="0dp"
-              android:layout_height="match_parent"
-              android:layout_marginTop="1dp"
-              android:layout_marginEnd="1dp"
-              android:layout_marginBottom="1dp"
-              android:layout_weight="1"
-              android:background="@drawable/toggle_widget_background"
-              android:button="@null"
-              android:gravity="center"
-              android:text="@string/gender_girl"
-              android:textColor="@color/white"
-              android:textSize="32sp" />
-        </RadioGroup>
+        <CheckBox
+            android:id="@+id/star3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20sp"
+            android:button="@drawable/star_sel"
+            android:scaleX="3"
+            android:scaleY="3" />
 
+        <CheckBox
+            android:id="@+id/star4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20sp"
+            android:button="@drawable/star_sel"
+            android:scaleX="3"
+            android:scaleY="3" />
+
+        <CheckBox
+            android:id="@+id/star5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20sp"
+            android:button="@drawable/star_sel"
+            android:scaleX="3"
+            android:scaleY="3" />
       </LinearLayout>
 
+      <com.google.android.gms.maps.MapView
+          android:id="@+id/mapView"
+          android:layout_width="364dp"
+          android:layout_height="143dp"
+          android:layout_marginTop="100dp"
+          app:layout_constraintEnd_toEndOf="@+id/imageLayout"
+          app:layout_constraintStart_toStartOf="@+id/imageLayout"
+          app:layout_constraintTop_toBottomOf="@+id/imageLayout" />
+
+      <RelativeLayout
+          android:id="@+id/imageLayout"
+          android:layout_width="0dp"
+          android:layout_height="223dp"
+          android:layout_marginTop="110dp"
+          android:orientation="horizontal"
+          app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+          app:layout_constraintStart_toStartOf="@+id/linearLayout"
+          app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+      <EditText
+          android:id="@+id/textYourNotes"
+          android:layout_width="375dp"
+          android:layout_height="191dp"
+          android:layout_marginTop="100dp"
+          android:hint="@string/edit_site_notes_hint"
+          app:layout_constraintEnd_toEndOf="@+id/mapView"
+          app:layout_constraintStart_toStartOf="@+id/mapView"
+          app:layout_constraintTop_toBottomOf="@+id/mapView"
+          android:textAlignment="textStart"
+          android:gravity="center_horizontal"
+          />
+
+      <TextView
+          android:id="@+id/textOnTheMap"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:text="@string/on_the_map"
+          android:textSize="30sp"
+          app:layout_constraintBottom_toTopOf="@+id/mapView"
+          app:layout_constraintEnd_toEndOf="@+id/mapView"
+          app:layout_constraintStart_toStartOf="@+id/mapView"
+          app:layout_constraintTop_toBottomOf="@+id/imageLayout"
+          app:layout_constraintVertical_bias="0.7" />
+
+      <TextView
+          android:id="@+id/textImages"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:text="@string/images"
+          android:textSize="30sp"
+          app:layout_constraintBottom_toTopOf="@+id/imageLayout"
+          app:layout_constraintEnd_toEndOf="@+id/imageLayout"
+          app:layout_constraintStart_toStartOf="@+id/imageLayout"
+          app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+          app:layout_constraintVertical_bias="0.78" />
+
+      <TextView
+          android:id="@+id/textNotes"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="40dp"
+          android:gravity="center"
+          android:text="@string/your_notes"
+          android:textSize="30sp"
+          app:layout_constraintBottom_toTopOf="@+id/textYourNotes"
+          app:layout_constraintEnd_toEndOf="@+id/mapView"
+          app:layout_constraintStart_toStartOf="@+id/mapView"
+          app:layout_constraintTop_toBottomOf="@+id/mapView"
+          app:layout_constraintVertical_bias="0.45" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+  </ScrollView>
 
-  </androidx.core.widget.NestedScrollView>
+  <com.google.android.material.bottomnavigation.BottomNavigationView
+      android:id="@+id/bottomNavigationView"
+      android:layout_width="match_parent"
+      android:layout_alignParentBottom="true"
+      android:layout_height="75dp"
+      app:itemIconTint="@color/colorPrimary"
+      app:itemTextColor="@color/white"
+      app:labelVisibilityMode="labeled"
+      app:menu="@menu/bottom_nav_menu">
 
+  </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+      android:id="@+id/floatingActionButton"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentEnd="true"
+      android:layout_marginBottom="100sp"
+      android:layout_marginEnd="20sp"
+
+      android:clickable="true"
+      app:srcCompat="@drawable/ic_save"
+      android:focusable="true" />
+
+</RelativeLayout>

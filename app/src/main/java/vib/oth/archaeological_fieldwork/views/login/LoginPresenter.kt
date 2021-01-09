@@ -28,7 +28,7 @@ class LoginPresenter(view: BaseView) : BasePresenter(view) {
           sitesStore!!.fetch {
             if (usersStore != null) {
               usersStore!!.fetch {
-                app.currentUser = usersStore!!.findAll().findLast { it.email == email }!!
+                app.setUser(usersStore!!.findAll().findLast { it.email == email }!!)
                 view?.hideProgress()
                 view?.navigateTo(VIEW.LIST)
               }

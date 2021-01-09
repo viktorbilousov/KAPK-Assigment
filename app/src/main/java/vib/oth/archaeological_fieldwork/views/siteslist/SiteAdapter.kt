@@ -45,16 +45,17 @@ class SiteAdapter constructor(
   class MainHolder constructor(itemView: View, private val user: User) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(site: Site, listener: SiteListener) {
-      itemView.name.text = site.name;
+      itemView.textName.text = site.name;
       itemView.textDescription.text = site.description
       // todo fix location lat, lng -> inv , ing
       itemView.text_loc_inv.text = "inv: ${site.location.lng.toString()}"
       itemView.text_loc_ing.text = "ing: ${site.location.lat.toString()}"
       itemView.checkBoxIsVisited.isChecked = user.visitedSites.contains(site.id);
       itemView.checkBoxIsFavorite.isChecked = user.favoriteSites.contains(site.id);
-      val image = site.images[0] ?: R.drawable.no_image
+      itemView.textRating.text = site.raiting.toString(true)
+      val image = site.getHeadImage() ?: R.drawable.no_image
 
-      Glide.with(itemView.context).load(image).into(itemView.imageSite);
+      Glide.with(itemView.context).load(image).into(itemView.image1);
 
       itemView.setOnClickListener { listener.onSiteCardClick(site) }
       itemView.details.setOnClickListener { listener.onDetailsClick(site) }

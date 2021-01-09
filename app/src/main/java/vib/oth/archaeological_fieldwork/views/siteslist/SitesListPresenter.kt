@@ -55,6 +55,6 @@ class SitesListPresenter(private val siteView: BaseView) : BasePresenter(siteVie
   }
 
   fun doOnAddClick(view: BaseView) {
-    TODO("Not yet implemented")
+    view.navigateTo(VIEW.EDIT_SITE)
   }
 }

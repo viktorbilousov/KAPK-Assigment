@@ -5,6 +5,10 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
+import kotlinx.android.synthetic.main.activity_site_view.*
+import java.lang.StringBuilder
+import kotlin.math.pow
+import kotlin.math.roundToInt
 
 
 @Parcelize
@@ -14,11 +18,74 @@ data class Site(
     var fbId : String = "",
     var name: String = "",
     var description: String = "",
-    var images: MutableList<String?> = MutableList(4) {null},
-
+    var images: MutableList<String> = mutableListOf(),
     @Embedded var raiting : Rating = Rating(),
-    @Embedded var location : Location = Location()
+    @Embedded var location : Location = Location(),
 ): Parcelable {
+
+    companion object{
+        public const val MAX_IMAGES=4;
+    }
+    init {
+        while(images.size > 4) images.removeAt(4)
+    }
+
+    private var headImageIndex: Int = -1
+
+
+
+    fun setHeadImageIndex(value: Int) {
+        if(value >= 0 && value <= images.size - 1 ){
+            headImageIndex = value
+        }
+    };
+
+    val imagesIterator : Iterator<String>
+            get() = images.iterator();
+
+    val canAddImage : Boolean
+        get() = imagesCnt() < MAX_IMAGES;
+
+
+    fun imagesCnt() : Int{
+        return images.size
+    }
+
+    fun getImage(index: Int) : String{
+        return images[index];
+    }
+    fun addImage(imagePath: String, isHead: Boolean = false): Boolean{
+        if(images.contains(imagePath)) return false
+        if(!canAddImage) return false
+        val cnt = imagesCnt();
+        if(cnt == 0 || isHead) headImageIndex = cnt;
+        images.add(imagePath)
+        return true
+    }
+
+    fun removeImageAt(index: Int) : Boolean{
+        val lastIndex = imagesCnt() -1;
+        if(index < 0 || index > lastIndex) return false
+
+        images.removeAt(index)
+
+        if(headImageIndex > index) headImageIndex --;
+        else if(headImageIndex == index) {
+            if(imagesCnt() > 0) headImageIndex = 0
+            else headImageIndex = -1;
+        };
+        return true
+    }
+
+    fun removeImage(image: String) : Boolean{
+        return removeImageAt(image.indexOf(image))
+    }
+
+    fun getHeadImage() : String? {
+        if(headImageIndex < 0) return null
+        return images[headImageIndex]
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -34,13 +101,14 @@ data class Site(
         return id.hashCode()
     }
 
-
 }
 
 @Parcelize
 data class Location(var lat: Double = 0.0,
                     var lng: Double = 0.0,
-                    var zoom: Float = 0f) : Parcelable
+                    var zoom: Float = 0f) : Parcelable{
+    constructor(loc: Location) : this(loc.lat, loc.lng, loc.zoom)
+}
 
 @Parcelize
 data class Rating(var raiting: Double = 0.0, var totalGoals : Int = 0) : Parcelable{
@@ -48,6 +116,22 @@ data class Rating(var raiting: Double = 0.0, var totalGoals : Int = 0) : Parcela
     fun vote(mark: MARK){
         val number = mark.number;
         raiting = (raiting * totalGoals + raiting) / (totalGoals + 1)
+    }
+
+
+    fun toString(printTotal: Boolean): String{
+        if(totalGoals == 0) return "no votes"
+        val sb = StringBuilder();
+        sb.append("%.1f".format(raiting))
+        sb.append(" / 5.0")
+        if(printTotal) {
+            sb.append( " ($totalGoals)")
+        }
+        return sb.toString()
+    }
+
+    override fun toString(): String {
+        return toString(false)
     }
 
     companion object{

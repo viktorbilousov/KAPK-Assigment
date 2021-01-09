@@ -66,6 +66,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".views.siteslist.SitesListView" />
         </activity>
+
+        <activity
+            android:name=".views.site.SiteView"
+            android:launchMode="singleTop">
+            <!-- android:label="@string/title_activity_register"> -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".views.siteslist.SitesListView" />
+        </activity>
     </application>
 
 </manifest>

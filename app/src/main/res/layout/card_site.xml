@@ -14,7 +14,7 @@
       android:padding="16dp">
 
     <ImageView
-        android:id="@+id/imageSite"
+        android:id="@+id/image1"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:backgroundTint="@color/grey"
@@ -27,7 +27,7 @@
 
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/textName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -36,10 +36,10 @@
         android:text="TextView"
         android:textColor="@color/white"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageSite"
-        app:layout_constraintEnd_toEndOf="@+id/imageSite"
-        app:layout_constraintStart_toStartOf="@+id/imageSite"
-        app:layout_constraintTop_toTopOf="@+id/imageSite"
+        app:layout_constraintBottom_toBottomOf="@+id/image1"
+        app:layout_constraintEnd_toEndOf="@+id/image1"
+        app:layout_constraintStart_toStartOf="@+id/image1"
+        app:layout_constraintTop_toTopOf="@+id/image1"
 
         />
 
@@ -49,9 +49,9 @@
         android:layout_height="107dp"
         android:layout_marginTop="18dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/imageSite"
-        app:layout_constraintStart_toStartOf="@+id/imageSite"
-        app:layout_constraintTop_toBottomOf="@+id/imageSite" />
+        app:layout_constraintEnd_toEndOf="@+id/image1"
+        app:layout_constraintStart_toStartOf="@+id/image1"
+        app:layout_constraintTop_toBottomOf="@+id/image1" />
 
     <TextView
         android:id="@+id/text_loc_ing"
@@ -65,7 +65,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.835"
         app:layout_constraintStart_toEndOf="@+id/text_loc_inv"
-        app:layout_constraintTop_toBottomOf="@+id/imageSite" />
+        app:layout_constraintTop_toBottomOf="@+id/image1" />
 
     <TextView
         android:id="@+id/text_loc_inv"
@@ -76,7 +76,7 @@
         android:text="TextView"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageSite" />
+        app:layout_constraintTop_toBottomOf="@+id/image1" />
 
     <View
         android:id="@+id/view_line"
@@ -99,6 +99,7 @@
         android:text="@string/visited"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textDescription"
+        app:layout_constraintHorizontal_bias="0.67"
         app:layout_constraintStart_toStartOf="@+id/textDescription"
         app:layout_constraintTop_toBottomOf="@+id/view_line" />
 
@@ -119,11 +120,23 @@
         android:layout_marginEnd="66dp"
         android:button="@drawable/checkbox_favorite"
         android:text="@string/favorite"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/checkBoxIsVisited"
         app:layout_constraintEnd_toStartOf="@+id/checkBoxIsVisited"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textDescription"
-        app:layout_constraintTop_toBottomOf="@+id/view_line"
+        app:layout_constraintTop_toTopOf="@+id/checkBoxIsVisited"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/checkBoxIsVisited"
+        app:layout_constraintEnd_toEndOf="@+id/textDescription"
+        app:layout_constraintHorizontal_bias="0.34"
+        app:layout_constraintStart_toStartOf="@+id/textDescription"
+        app:layout_constraintTop_toTopOf="@+id/checkBoxIsVisited"
         app:layout_constraintVertical_bias="1.0" />
   </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

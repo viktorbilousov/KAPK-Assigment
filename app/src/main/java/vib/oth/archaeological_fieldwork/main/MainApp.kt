@@ -19,7 +19,13 @@ class MainApp : Application(), AnkoLogger {
   lateinit var users: BaseStore<User>
   lateinit var currentUser: User
 
+
   final val TEST : Boolean = true;
+
+  fun setUser(user: User){
+    info("Set current user $user")
+    currentUser = user
+  }
 
 
   override fun onCreate() {
