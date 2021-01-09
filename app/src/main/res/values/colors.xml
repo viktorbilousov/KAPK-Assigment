@@ -10,7 +10,8 @@
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#4c90af</color>
-    <color name="green">#4c90af</color>
+    <color name="green">#3CB371</color>
+    <color name="orange">#e67300</color>
     <color name="grey">#808080 </color>
     <color name="nav_selected">#FFFF00</color>
     <color name="nav_unselected">#FFBB86FC</color>

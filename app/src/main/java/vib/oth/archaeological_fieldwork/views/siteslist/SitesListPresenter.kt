@@ -49,4 +49,12 @@ class SitesListPresenter(private val siteView: BaseView) : BasePresenter(siteVie
   fun doOnDetailsClick(site: Site) {
     TODO("Not yet implemented")
   }
+
+  fun doOnSearchClick(view: BaseView) {
+    TODO("Not yet implemented")
+  }
+
+  fun doOnAddClick(view: BaseView) {
+    TODO("Not yet implemented")
+  }
 }

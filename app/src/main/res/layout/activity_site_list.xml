@@ -1,44 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.siteslist.SitesListView">
+    app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+    tools:context=".views.siteslist.FavoritesSitesListView">
 
-  <FrameLayout
-      android:id="@+id/flFragment"
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/constraintLayout"
       android:layout_width="match_parent"
-      android:layout_height="0dp"
-      app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" >
+      android:layout_height="match_parent"
+      tools:context=".views.siteslist.SitesListView">
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-  </FrameLayout>
 
-  <com.google.android.material.bottomnavigation.BottomNavigationView
-      android:id="@+id/bottomNavigationView"
-      android:layout_width="match_parent"
-      android:layout_height="75dp"
-      app:itemIconTint="@color/colorPrimary"
-      app:itemTextColor="@color/white"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toStartOf="parent"
-      app:menu="@menu/bottom_nav_menu"
-      app:labelVisibilityMode="labeled"
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        app:itemIconTint="@color/colorPrimary"
+        app:itemTextColor="@color/white"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu">
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <!--  <FrameLayout-->
+    <!--      android:id="@+id/flFragment"-->
+    <!--      android:layout_width="match_parent"-->
+    <!--      android:layout_height="0dp"-->
+    <!--      app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"-->
+    <!--      app:layout_constraintEnd_toEndOf="parent"-->
+    <!--      app:layout_constraintHorizontal_bias="0.5"-->
+    <!--      app:layout_constraintStart_toStartOf="parent"-->
+    <!--      app:layout_constraintTop_toTopOf="parent">-->
+    <!--  </FrameLayout>-->
+
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/floatingLayout"
+      android:layout_width="414dp"
+      android:layout_height="match_parent"
       >
+    <!--      app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"-->
 
-  </com.google.android.material.bottomnavigation.BottomNavigationView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:clickable="true"
+        app:backgroundTint="@color/green"
+        app:layout_constraintBottom_toBottomOf="@+id/bntAdd"
+        app:layout_constraintEnd_toStartOf="@+id/bntAdd"
+        app:layout_constraintTop_toTopOf="@+id/bntAdd"
+        app:srcCompat="@drawable/ic_search" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/bntAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="477dp"
+        android:layout_marginBottom="90dp"
+        android:clickable="true"
+        app:backgroundTint="@color/orange"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.91"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.96"
+        app:srcCompat="@drawable/ic_add" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

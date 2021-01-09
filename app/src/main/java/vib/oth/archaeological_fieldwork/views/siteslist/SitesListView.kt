@@ -1,8 +1,10 @@
 package vib.oth.archaeological_fieldwork.views.siteslist
 
 import android.os.Bundle
+import android.view.View
 import android.widget.CheckBox
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_site_list.*
 import vib.oth.archaeological_fieldwork.R
 import vib.oth.archaeological_fieldwork.models.Site
@@ -39,6 +41,28 @@ class SitesListView : BaseView(), SiteListener  {
             db.create(Site(Random().nextLong(),name="test site3", description = "test site description3"))
         }
         presenter.loadSites()
+        
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0 && bntAdd.visibility == View.VISIBLE) {
+                    bntAdd.hide();
+                    btnSearch.hide()
+                } else if (dy < 0 && bntAdd.visibility != View.VISIBLE) {
+                    bntAdd.show();
+                    btnSearch.show()
+                }
+            }
+        })
+
+        btnSearch.setOnClickListener {
+            presenter.doOnSearchClick(this)
+        }
+
+        bntAdd.setOnClickListener {
+            presenter.doOnAddClick(this)
+        }
+
 
     }
 
