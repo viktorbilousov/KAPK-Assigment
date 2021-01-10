@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.firebase.database.Exclude
 import kotlinx.android.parcel.Parcelize
 import java.lang.StringBuilder
 
@@ -31,6 +32,9 @@ data class Site(
     private set;
 
 
+    @get:Exclude
+    val imagesIterator : Iterator<String>
+        get() = images.iterator();
 
 
     fun setHeadImage(imagePath: String): Boolean {
@@ -39,8 +43,7 @@ data class Site(
         return true
     };
 
-    val imagesIterator : Iterator<String>
-            get() = images.iterator();
+
 
     val canAddImage : Boolean
         get() = imagesCnt() < MAX_IMAGES;
@@ -112,10 +115,22 @@ data class Location(var lat: Double = 0.0,
 @Parcelize
 data class Rating(var raiting: Double = 0.0, var totalGoals : Int = 0) : Parcelable{
 
-    fun vote(mark: MARK){
-        if(mark == MARK.ZERO) return
-        val number = mark.number;
+    fun vote(rate: Rate){
+        if(rate == Rate.ZERO) return
+        val number = rate.number;
         raiting = (raiting * totalGoals + number) / (totalGoals + 1)
+        totalGoals++
+    }
+
+    fun deleteVote(rate: Rate){
+        if(rate == Rate.ZERO) return
+        if(totalGoals == 1) {
+            totalGoals = 0;
+            raiting = 0.0;
+            return;
+        }
+        raiting =  (raiting * totalGoals - rate.number) / (totalGoals - 1 )
+        totalGoals--;
     }
 
 
@@ -135,10 +150,10 @@ data class Rating(var raiting: Double = 0.0, var totalGoals : Int = 0) : Parcela
     }
 
     companion object{
-        enum class MARK(val number : Int){
+        enum class Rate(val number : Int){
             ZERO(0), ONE(1), TWO(2), THREE(3), FOUR(4), FIVE(5);
             companion object {
-                fun parse(number: Int): MARK? {
+                fun parse(number: Int): Rate? {
                     return values().findLast { it.number == number }
                 }
             }

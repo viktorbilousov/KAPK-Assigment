@@ -18,8 +18,8 @@ data class User(
     // Long -> id of SiteModel
     var visitedSites : MutableList<Long> = mutableListOf(),
     var favoriteSites : MutableList<Long> = mutableListOf(),
-    var givenRating : MutableMap<Long, Int> = mutableMapOf(),
-    var notes       : MutableMap<Long, String> = mutableMapOf()
+    var givenRating : MutableMap<String, Int> = mutableMapOf(),
+    var notes       : MutableMap<String, String> = mutableMapOf()
 ): Parcelable{
   fun addVisitedSite(site: Site): Boolean{
     val id = site.id;
@@ -27,10 +27,44 @@ data class User(
     return false
   }
 
+  fun setUserRating(site: Site, rate: Rating.Companion.Rate){
+    val num = rate.number;
+    val id = site.id.toString()
+    givenRating[id] = num;
+  }
+
+  fun removeUserRating(site: Site){
+     givenRating.remove(site.id.toString())
+  }
+
+  fun setUserNote(site: Site, note: String){
+    val id = site.id.toString()
+    notes[id] = note;
+  }
+
+  fun removeUserNote(site: Site){
+    notes.remove(site.id.toString())
+  }
+
   fun addFavoriteSite(site: Site) : Boolean{
     val id = site.id;
     if (!favoriteSites.contains(id)) return favoriteSites.add(id)
     return false
+  }
+
+  fun getRating(site: Site) : Int? {
+    return givenRating[site.id.toString()]
+  }
+
+  fun getNote(site: Site) : String?{
+    return notes[site.id.toString()]
+  }
+
+  fun removeFavoriteSite(site: Site) {
+    favoriteSites.remove(site.id)
+  }
+  fun removeVisitedSite(site: Site){
+    visitedSites.remove(site.id)
   }
 
 }
