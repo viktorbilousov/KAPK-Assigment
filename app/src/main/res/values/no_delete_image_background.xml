@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="no_add_image_background">#B6B8B7</color>
+    <color name="no_delete_image_background">#79130F</color>
 </resources>

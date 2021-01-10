@@ -5,10 +5,7 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
-import kotlinx.android.synthetic.main.activity_site_view.*
 import java.lang.StringBuilder
-import kotlin.math.pow
-import kotlin.math.roundToInt
 
 
 @Parcelize
@@ -30,14 +27,16 @@ data class Site(
         while(images.size > 4) images.removeAt(4)
     }
 
-    private var headImageIndex: Int = -1
+    public var headImageIndex: Int = -1
+    private set;
 
 
 
-    fun setHeadImageIndex(value: Int) {
-        if(value >= 0 && value <= images.size - 1 ){
-            headImageIndex = value
-        }
+
+    fun setHeadImage(imagePath: String): Boolean {
+       if(!images.contains(imagePath)) return false;
+        headImageIndex = images.indexOf(imagePath);
+        return true
     };
 
     val imagesIterator : Iterator<String>

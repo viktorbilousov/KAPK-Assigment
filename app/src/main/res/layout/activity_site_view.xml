@@ -181,7 +181,7 @@
       <RelativeLayout
           android:id="@+id/imageLayout"
           android:layout_width="0dp"
-          android:layout_height="223dp"
+          android:layout_height="265dp"
           android:layout_marginTop="110dp"
           android:orientation="horizontal"
           app:layout_constraintEnd_toEndOf="@+id/linearLayout"
@@ -257,7 +257,7 @@
   </com.google.android.material.bottomnavigation.BottomNavigationView>
 
   <com.google.android.material.floatingactionbutton.FloatingActionButton
-      android:id="@+id/floatingActionButton"
+      android:id="@+id/btnSave"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_alignParentBottom="true"

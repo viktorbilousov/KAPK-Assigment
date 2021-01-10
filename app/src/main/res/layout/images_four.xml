@@ -1,54 +1,287 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relativeLayoutImage4"
     android:layout_width="match_parent"
-    android:layout_height="250sp">
+    android:layout_height="265sp">
 
-  <LinearLayout
+  <androidx.constraintlayout.widget.ConstraintLayout
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:orientation="vertical">
+      android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="125sp"
-        android:orientation="horizontal">
-
-      <ImageView
-          android:id="@+id/image4_1"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:layout_weight="1"
-          tools:srcCompat="@tools:sample/avatars" />
-
-      <ImageView
-          android:id="@+id/image4_2"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:layout_weight="1"
-          tools:srcCompat="@tools:sample/avatars" />
-
-    </LinearLayout>
-
-    <LinearLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
 
-      <ImageView
-          android:id="@+id/image4_3"
+      <LinearLayout
           android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:layout_weight="1"
-          tools:srcCompat="@tools:sample/avatars" />
+          android:layout_height="125sp"
+          android:orientation="horizontal">
 
-      <ImageView
-          android:id="@+id/image4_4"
+        <ImageView
+            android:id="@+id/image4_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/image4_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            tools:srcCompat="@tools:sample/avatars" />
+
+      </LinearLayout>
+
+      <LinearLayout
           android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:layout_weight="1"
-          tools:srcCompat="@tools:sample/avatars" />
+          android:layout_height="125sp"
+          android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/image4_3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/image4_4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            tools:srcCompat="@tools:sample/avatars" />
+      </LinearLayout>
     </LinearLayout>
-  </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.53">
+
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
+          android:id="@+id/btnFlagImage4_3"
+          android:layout_width="32dp"
+          android:layout_height="31dp"
+          android:layout_marginRight="20sp"
+          android:clickable="true"
+          android:scaleType="fitCenter"
+          android:scaleX="1"
+          android:scaleY="1"
+          app:fabCustomSize="30dp"
+          app:fabSize="normal"
+          app:layout_constraintBottom_toBottomOf="@+id/image1_1"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.98"
+          app:layout_constraintStart_toStartOf="@+id/image1_1"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintVertical_bias="0.0"
+          app:maxImageSize="20dp"
+          app:srcCompat="@drawable/ic_flag" />
+
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
+          android:id="@+id/btnRemoveImage4_3"
+          android:layout_width="32dp"
+          android:layout_height="31dp"
+          android:backgroundTint="@color/red"
+          android:clickable="true"
+          android:scaleType="fitCenter"
+          android:scaleX="1"
+          android:scaleY="1"
+          app:fabCustomSize="30dp"
+          app:fabSize="normal"
+          app:layout_constraintBottom_toBottomOf="@+id/image1_1"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.98"
+          app:layout_constraintStart_toStartOf="@+id/image1_1"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintVertical_bias="0.0"
+          app:maxImageSize="20dp"
+          app:srcCompat="@drawable/ic_close" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout6"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout5"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout5"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout6"
+        app:layout_constraintVertical_bias="0.0">
+
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
+          android:id="@+id/btnFlagImage4_2"
+          android:layout_width="32dp"
+          android:layout_height="31dp"
+          android:layout_marginRight="20sp"
+          android:clickable="true"
+          android:scaleType="fitCenter"
+          android:scaleX="1"
+          android:scaleY="1"
+          app:fabCustomSize="30dp"
+          app:fabSize="normal"
+          app:layout_constraintBottom_toBottomOf="@+id/image1_1"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.98"
+          app:layout_constraintStart_toStartOf="@+id/image1_1"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintVertical_bias="0.0"
+          app:maxImageSize="20dp"
+          app:srcCompat="@drawable/ic_flag" />
+
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
+          android:id="@+id/btnRemoveImage4_2"
+          android:layout_width="32dp"
+          android:layout_height="31dp"
+          android:backgroundTint="@color/red"
+          android:clickable="true"
+          android:scaleType="fitCenter"
+          android:scaleX="1"
+          android:scaleY="1"
+          app:fabCustomSize="30dp"
+          app:fabSize="normal"
+          app:layout_constraintBottom_toBottomOf="@+id/image1_1"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.98"
+          app:layout_constraintStart_toStartOf="@+id/image1_1"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintVertical_bias="0.0"
+          app:maxImageSize="20dp"
+          app:srcCompat="@drawable/ic_close" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="90dp"
+        android:layout_height="35dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+      <!--          android:backgroundTint="@color/orange"-->
+
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
+          android:id="@+id/btnFlagImage4_1"
+          android:layout_width="32dp"
+          android:layout_height="31dp"
+          android:layout_marginRight="20sp"
+          android:clickable="true"
+          android:scaleType="fitCenter"
+          android:scaleX="1"
+          android:scaleY="1"
+          app:fabCustomSize="30dp"
+          app:fabSize="normal"
+          app:layout_constraintBottom_toBottomOf="@+id/image1_1"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.98"
+          app:layout_constraintStart_toStartOf="@+id/image1_1"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintVertical_bias="0.0"
+          app:maxImageSize="20dp"
+          app:srcCompat="@drawable/ic_flag" />
+
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
+          android:id="@+id/btnRemoveImage4_1"
+          android:layout_width="32dp"
+          android:layout_height="31dp"
+          android:backgroundTint="@color/red"
+          android:clickable="true"
+          android:scaleType="fitCenter"
+          android:scaleX="1"
+          android:scaleY="1"
+          app:fabCustomSize="30dp"
+          app:fabSize="normal"
+          app:layout_constraintBottom_toBottomOf="@+id/image1_1"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.98"
+          app:layout_constraintStart_toStartOf="@+id/image1_1"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintVertical_bias="0.0"
+          app:maxImageSize="20dp"
+          app:srcCompat="@drawable/ic_close" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout5"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.58000004">
+
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
+          android:id="@+id/btnFlagImage4_4"
+          android:layout_width="32dp"
+          android:layout_height="31dp"
+          android:layout_marginRight="20sp"
+          android:clickable="true"
+          android:scaleType="fitCenter"
+          android:scaleX="1"
+          android:scaleY="1"
+          app:fabCustomSize="30dp"
+          app:fabSize="normal"
+          app:layout_constraintBottom_toBottomOf="@+id/image1_1"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.98"
+          app:layout_constraintStart_toStartOf="@+id/image1_1"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintVertical_bias="0.0"
+          app:maxImageSize="20dp"
+          app:srcCompat="@drawable/ic_flag" />
+
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
+          android:id="@+id/btnRemoveImage4_4"
+          android:layout_width="32dp"
+          android:layout_height="31dp"
+          android:backgroundTint="@color/red"
+          android:clickable="true"
+          android:scaleType="fitCenter"
+          android:scaleX="1"
+          android:scaleY="1"
+          app:fabCustomSize="30dp"
+          app:fabSize="normal"
+          app:layout_constraintBottom_toBottomOf="@+id/image1_1"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.98"
+          app:layout_constraintStart_toStartOf="@+id/image1_1"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintVertical_bias="0.0"
+          app:maxImageSize="20dp"
+          app:srcCompat="@drawable/ic_close" />
+
+    </LinearLayout>
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
 </RelativeLayout>

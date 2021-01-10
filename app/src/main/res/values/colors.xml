@@ -15,4 +15,5 @@
     <color name="grey">#808080 </color>
     <color name="nav_selected">#FFFF00</color>
     <color name="nav_unselected">#FFBB86FC</color>
+    <color name="red">#C70000</color>
 </resources>

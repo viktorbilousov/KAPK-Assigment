@@ -167,4 +167,12 @@ class SitePresenter(view: BaseView) : BasePresenter(view), AnkoLogger {
         doSelectImage()
     }
 
+    fun onDeleteImage(image: String) {
+        site.removeImage(image);
+    }
+
+    fun onSetHeadImage(image: String, index: Int) {
+        site.setHeadImage(image)
+    }
+
 }
