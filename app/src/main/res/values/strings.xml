@@ -26,4 +26,5 @@
     <string name="edit_site_description_hint">Description</string>
     <string name="edit_site_notes_hint">Notes</string>
     <string name="menu_save">Save</string>
+    <string name="delete_site">Delete Site</string>
 </resources>

@@ -60,6 +60,19 @@ class SiteView : BaseView(), AnkoLogger, ImageClickListener {
             }
         }
 
+        btnSave.setOnClickListener {
+            cashe()
+            presenter.updateSiteRating()
+            presenter.doAddOrSave()
+        }
+        btn_delete.setOnClickListener {
+            presenter.doDelete();
+        }
+
+        checkBoxIsFavorite.setOnClickListener {
+            presenter.doSetFavorite((it as CheckBox).isChecked)
+        }
+
         showSite(site)
     }
 
@@ -73,18 +86,24 @@ class SiteView : BaseView(), AnkoLogger, ImageClickListener {
 
 
         if(site.description.isNotEmpty()) textDescription.setText(site.description)
-
-        this.presenter.setRating(Rating.Companion.MARK.parse(site.raiting.raiting.toInt())!!)
+        
+        this.presenter.setRating(Rating.Companion.Rate.parse(site.raiting.raiting.toInt())!!, true)
         this.showLocation(site.location)
         this.showImages(site, true)
         showUserInfo(presenter.app.currentUser)
 
     }
 
+    fun cashe(){
+        presenter.cacheSite(textName.text.toString() , textDescription.text.toString())
+        presenter.cacheUser(textNotes.text.toString())
+    }
+
+
     fun showUserInfo(user: User){
-        showStars(user.givenRating[site.id] ?: 0)
+        showStars(user.getRating(site) ?: 0)
         isVisited.isChecked = user.visitedSites.contains(site.id)
-        if(user.notes[site.id] != null) textNotes.text = user.notes[site.id];
+        if(user.getNote(site) != null) textNotes.text = user.getNote(site)
     }
 
     fun showStars(number: Int){
@@ -94,6 +113,7 @@ class SiteView : BaseView(), AnkoLogger, ImageClickListener {
     }
 
     override fun showLocation(loc: Location) {
+        // todo fix location lat, lng -> inv , ing
         text_loc_ing.text = ("ing: " +  "%.6f".format(loc.lat))
         text_loc_inv.text = ("inv: " + "%.6f".format(loc.lng))
     }
@@ -103,6 +123,7 @@ class SiteView : BaseView(), AnkoLogger, ImageClickListener {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        showSite(site)
         super.onActivityResult(requestCode, resultCode, data)
         if (data != null) {
             presenter.doActivityResult(requestCode, resultCode, data)

@@ -31,7 +31,7 @@ class SitesListPresenter(private val siteView: BaseView) : BasePresenter(siteVie
   }
 
   fun doEditSite(site: Site) {
-    view?.navigateTo(VIEW.LIST, 0, "placemark_edit", site)
+    view?.navigateTo(VIEW.EDIT_SITE, 0, "site_edit", site)
   }
 
   fun doOnFavoriteChanged(site: Site, checkbox: CheckBox) {
@@ -44,10 +44,6 @@ class SitesListPresenter(private val siteView: BaseView) : BasePresenter(siteVie
   fun doOnVisitedChanged(site: Site, checkbox: CheckBox) {
     checkbox.isChecked = !checkbox.isChecked
     //disable !
-  }
-
-  fun doOnDetailsClick(site: Site) {
-    TODO("Not yet implemented")
   }
 
   fun doOnSearchClick(view: BaseView) {

@@ -58,7 +58,7 @@ class FavoritesSitesListView : BaseView(), SiteListener  {
     }
 
     override fun onDetailsClick(site: Site) {
-        presenter.doOnDetailsClick(site)
+        presenter.doEditSite(site)
     }
 
 }

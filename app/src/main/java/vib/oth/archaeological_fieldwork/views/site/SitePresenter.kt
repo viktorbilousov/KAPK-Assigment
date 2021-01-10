@@ -13,10 +13,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_site_view.*
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.info
-import org.jetbrains.anko.uiThread
+import org.jetbrains.anko.*
 import vib.oth.archaeological_fieldwork.helpers.checkLocationPermissions
 import vib.oth.archaeological_fieldwork.helpers.createDefaultLocationRequest
 import vib.oth.archaeological_fieldwork.helpers.isPermissionGranted
@@ -24,6 +21,7 @@ import vib.oth.archaeological_fieldwork.helpers.showImagePicker
 import vib.oth.archaeological_fieldwork.models.Location
 import vib.oth.archaeological_fieldwork.models.Rating
 import vib.oth.archaeological_fieldwork.models.Site
+import vib.oth.archaeological_fieldwork.models.User
 import vib.oth.archaeological_fieldwork.views.*
 import kotlin.random.Random
 
@@ -31,26 +29,32 @@ class SitePresenter(view: SiteView) : BasePresenter(view), AnkoLogger {
 
     private var map: GoogleMap? = null
     val site: Site
-    private var edit = false;
+    val user : User
+    private var edit = false
     private var locationService: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(view)
     private val locationRequest = createDefaultLocationRequest()
     private var locationManualyChanged = false;
     private val defaultLocation = Location(.0, .0)
     private val starsList : List<CheckBox>
     private val siteView = view;
+    private var oldUserVote: Rating.Companion.Rate
 
     init {
         if (view.intent.hasExtra("site_edit")) {
             edit = true
             site = view.intent.extras?.getParcelable("site_edit")!!
-            view.showSite(site)
+            oldUserVote = Rating.Companion.Rate.ZERO;
+//            view.showSite(site)
         } else {
             site = Site(Random.nextLong())
+            view.btn_delete.visibility = View.GONE
             if (checkLocationPermissions(view)) {
                 doSetCurrentLocation()
             }
+            oldUserVote = Rating.Companion.Rate.parse(app.currentUser.getRating(site) ?: 0 )!!
         }
 
+        user = app.currentUser
         starsList = listOf(view.star1, view.star2, view.star3, view.star4, view.star5 )
 
     }
@@ -87,10 +91,6 @@ class SitePresenter(view: SiteView) : BasePresenter(view), AnkoLogger {
         }
     }
 
-    fun cache (title: String, description: String) {
-//        placemark.title = title;
-//        placemark.description = description
-    }
 
     fun doConfigureMap(m: GoogleMap) {
         map = m
@@ -108,12 +108,19 @@ class SitePresenter(view: SiteView) : BasePresenter(view), AnkoLogger {
     }
 
     fun doAddOrSave() {
+
+        if(site.description.isEmpty() || site.name.isEmpty()) {
+            view?.toast("Please enter Name + Description")
+            return
+        }
+
         doAsync {
             if (edit) {
                 app.sites.update(site)
             } else {
                 app.sites.create(site)
             }
+            app.users.update(user)
             uiThread {
                 view?.finish()
             }
@@ -184,25 +191,49 @@ class SitePresenter(view: SiteView) : BasePresenter(view), AnkoLogger {
 
     fun doOnClickStar(checkBox: CheckBox) {
         val index = starsList.indexOf(checkBox)
-        setRating(Rating.Companion.MARK.parse(index+1)!!)
+        setRating(Rating.Companion.Rate.parse(index+1)!!)
         setIsVisited(true)
-        siteView.showUserInfo(app.currentUser)
+        siteView.showUserInfo(user)
     }
 
     private fun setIsVisited(boolean: Boolean){
-        val user = app.currentUser;
         if (boolean) user.addVisitedSite(site)
-        else user.visitedSites.remove(site.id);
+        else user.removeVisitedSite(site);
     }
 
-    fun setRating(vote: Rating.Companion.MARK){
-        app.currentUser.givenRating[site.id] = vote.number
+    fun setRating(vote: Rating.Companion.Rate, isSource: Boolean = false){
+        if(isSource){
+            oldUserVote = vote
+        }
+        user.setUserRating(site, vote)
     }
 
     fun doOnClickSetVisited(checkBox: CheckBox) {
-        app.currentUser.givenRating.remove(site.id)
+        user.removeUserRating(site)
         setIsVisited(checkBox.isChecked)
-        siteView.showUserInfo(app.currentUser)
+        siteView.showUserInfo(user)
+    }
+
+    fun doSetFavorite(checked: Boolean) {
+        if(checked) user.addFavoriteSite(site)
+        else user.removeFavoriteSite(site)
+    }
+
+    fun cacheUser(note: String) {
+        user.setUserNote(site, note)
+    }
+
+    fun cacheSite(name: String, description: String) {
+        site.name = name;
+        site.description = description
+    }
+
+    fun updateSiteRating(){
+        val vote = user.getRating(site) ?: 0;
+        val rate = Rating.Companion.Rate.parse(vote)!!
+        site.raiting.deleteVote(oldUserVote)
+        site.raiting.vote(rate)
+        oldUserVote = rate;
     }
 
 }

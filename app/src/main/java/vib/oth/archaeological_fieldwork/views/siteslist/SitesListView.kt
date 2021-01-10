@@ -1,11 +1,14 @@
 package vib.oth.archaeological_fieldwork.views.siteslist
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.CheckBox
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_site_list.*
+import org.jetbrains.anko.info
+import org.jetbrains.anko.warn
 import vib.oth.archaeological_fieldwork.R
 import vib.oth.archaeological_fieldwork.models.Site
 import vib.oth.archaeological_fieldwork.models.User
@@ -85,9 +88,12 @@ class SitesListView : BaseView(), SiteListener  {
     }
 
     override fun onDetailsClick(site: Site) {
-        presenter.doOnDetailsClick(site)
+        presenter.doEditSite(site)
     }
 
-
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        presenter.loadSites()
+        super.onActivityResult(requestCode, resultCode, data)
+    }
 
 }
