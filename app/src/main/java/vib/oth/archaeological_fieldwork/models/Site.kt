@@ -113,8 +113,9 @@ data class Location(var lat: Double = 0.0,
 data class Rating(var raiting: Double = 0.0, var totalGoals : Int = 0) : Parcelable{
 
     fun vote(mark: MARK){
+        if(mark == MARK.ZERO) return
         val number = mark.number;
-        raiting = (raiting * totalGoals + raiting) / (totalGoals + 1)
+        raiting = (raiting * totalGoals + number) / (totalGoals + 1)
     }
 
 
@@ -135,7 +136,12 @@ data class Rating(var raiting: Double = 0.0, var totalGoals : Int = 0) : Parcela
 
     companion object{
         enum class MARK(val number : Int){
-            ZERO(1), ONE(2), TWO(4), THREE(3), FOUR(4), FIVE(5);
+            ZERO(0), ONE(1), TWO(2), THREE(3), FOUR(4), FIVE(5);
+            companion object {
+                fun parse(number: Int): MARK? {
+                    return values().findLast { it.number == number }
+                }
+            }
         }
     }
 }

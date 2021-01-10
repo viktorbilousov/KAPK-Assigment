@@ -3,14 +3,16 @@ package vib.oth.archaeological_fieldwork.views.site
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
+import android.widget.CheckBox
 import com.google.android.gms.maps.GoogleMap
 import kotlinx.android.synthetic.main.activity_site_view.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import vib.oth.archaeological_fieldwork.R
 import vib.oth.archaeological_fieldwork.models.Location
+import vib.oth.archaeological_fieldwork.models.Rating
 import vib.oth.archaeological_fieldwork.models.Site
+import vib.oth.archaeological_fieldwork.models.User
 import vib.oth.archaeological_fieldwork.views.BaseView
 import vib.oth.archaeological_fieldwork.views.VIEW
 
@@ -20,6 +22,7 @@ class SiteView : BaseView(), AnkoLogger, ImageClickListener {
     lateinit var site: Site;
     lateinit var map: GoogleMap
     lateinit var imageAdapter: SiteImageAdapter
+    lateinit var stars: Array<CheckBox>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_site_view)
@@ -36,6 +39,17 @@ class SiteView : BaseView(), AnkoLogger, ImageClickListener {
         site = presenter.site
         imageAdapter = SiteImageAdapter(imageLayout, this, this)
 
+       stars = arrayOf(star1, star2, star3, star4, star5)
+       stars.forEach { checkbox ->
+           checkbox.setOnClickListener {
+                presenter.doOnClickStar(checkbox);
+            }
+        }
+        isVisited.setOnClickListener {
+            presenter.doOnClickSetVisited(it as CheckBox)
+        }
+
+
         showSite(site)
     //        chooseImage.setOnClickListener {
 //            presenter.cachePlacemark(placemarkTitle.text.toString(), description.text.toString())
@@ -45,26 +59,32 @@ class SiteView : BaseView(), AnkoLogger, ImageClickListener {
 
     override fun showSite(site: Site) {
 
-       val user =  presenter.app.currentUser;
-
         if(site.name.isNotEmpty()) textName.setText(site.name)
         if(site.description.isNotEmpty()) textDescription.setText(site.description)
 
         textDescription.setText(site.description)
         textRating.text = site.raiting.toString(true)
 
-        if(user.notes[site.id] != null) textNotes.text = user.notes[site.id];
 
         if(site.description.isNotEmpty()) textDescription.setText(site.description)
 
+        this.presenter.setRating(Rating.Companion.MARK.parse(site.raiting.raiting.toInt())!!)
         this.showLocation(site.location)
         this.showImages(site, true)
+        showUserInfo(presenter.app.currentUser)
 
-//        btnSave.backgroundTintList = ContextCompat.getColorStateList(
-//            btnSave.context,
-//            R.color.purple_200
-//        )
+    }
 
+    fun showUserInfo(user: User){
+        showStars(user.givenRating[site.id] ?: 0)
+        isVisited.isChecked = user.visitedSites.contains(site.id)
+        if(user.notes[site.id] != null) textNotes.text = user.notes[site.id];
+    }
+
+    fun showStars(number: Int){
+        stars.forEachIndexed { i, checkBox ->
+            checkBox.isChecked = i <= number-1
+        }
     }
 
     override fun showLocation (loc : Location) {

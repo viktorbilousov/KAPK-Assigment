@@ -3,6 +3,7 @@ package vib.oth.archaeological_fieldwork.views.site
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.View
+import android.widget.CheckBox
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult
@@ -11,6 +12,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.android.synthetic.main.activity_site_view.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.info
@@ -20,20 +22,22 @@ import vib.oth.archaeological_fieldwork.helpers.createDefaultLocationRequest
 import vib.oth.archaeological_fieldwork.helpers.isPermissionGranted
 import vib.oth.archaeological_fieldwork.helpers.showImagePicker
 import vib.oth.archaeological_fieldwork.models.Location
+import vib.oth.archaeological_fieldwork.models.Rating
 import vib.oth.archaeological_fieldwork.models.Site
 import vib.oth.archaeological_fieldwork.views.*
 import kotlin.random.Random
 
-class SitePresenter(view: BaseView) : BasePresenter(view), AnkoLogger {
+class SitePresenter(view: SiteView) : BasePresenter(view), AnkoLogger {
 
-    var map: GoogleMap? = null
+    private var map: GoogleMap? = null
     val site: Site
-    var edit = false;
-    var locationService: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(view)
-    val locationRequest = createDefaultLocationRequest()
-    var locationManualyChanged = false;
-    val defaultLocation = Location(.0, .0)
-
+    private var edit = false;
+    private var locationService: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(view)
+    private val locationRequest = createDefaultLocationRequest()
+    private var locationManualyChanged = false;
+    private val defaultLocation = Location(.0, .0)
+    private val starsList : List<CheckBox>
+    private val siteView = view;
 
     init {
         if (view.intent.hasExtra("site_edit")) {
@@ -46,6 +50,9 @@ class SitePresenter(view: BaseView) : BasePresenter(view), AnkoLogger {
                 doSetCurrentLocation()
             }
         }
+
+        starsList = listOf(view.star1, view.star2, view.star3, view.star4, view.star5 )
+
     }
 
     @SuppressLint("MissingPermission")
@@ -173,6 +180,29 @@ class SitePresenter(view: BaseView) : BasePresenter(view), AnkoLogger {
 
     fun onSetHeadImage(image: String, index: Int) {
         site.setHeadImage(image)
+    }
+
+    fun doOnClickStar(checkBox: CheckBox) {
+        val index = starsList.indexOf(checkBox)
+        setRating(Rating.Companion.MARK.parse(index+1)!!)
+        setIsVisited(true)
+        siteView.showUserInfo(app.currentUser)
+    }
+
+    private fun setIsVisited(boolean: Boolean){
+        val user = app.currentUser;
+        if (boolean) user.addVisitedSite(site)
+        else user.visitedSites.remove(site.id);
+    }
+
+    fun setRating(vote: Rating.Companion.MARK){
+        app.currentUser.givenRating[site.id] = vote.number
+    }
+
+    fun doOnClickSetVisited(checkBox: CheckBox) {
+        app.currentUser.givenRating.remove(site.id)
+        setIsVisited(checkBox.isChecked)
+        siteView.showUserInfo(app.currentUser)
     }
 
 }

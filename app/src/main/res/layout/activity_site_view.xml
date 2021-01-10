@@ -21,14 +21,12 @@
           android:id="@+id/textRating"
           android:layout_width="87dp"
           android:layout_height="25dp"
+          android:layout_marginStart="180dp"
           android:gravity="center"
           android:text="TextView"
-          app:layout_constraintBottom_toBottomOf="@+id/checkBoxIsVisited"
-          app:layout_constraintEnd_toStartOf="@+id/checkBoxIsVisited"
-          app:layout_constraintHorizontal_bias="0.5"
+          app:layout_constraintBottom_toBottomOf="@+id/checkBoxIsFavorite"
           app:layout_constraintStart_toEndOf="@+id/checkBoxIsFavorite"
-          app:layout_constraintTop_toTopOf="@+id/checkBoxIsVisited"
-          app:layout_constraintVertical_bias="0.0" />
+          app:layout_constraintTop_toTopOf="@+id/checkBoxIsFavorite" />
 
       <EditText
           android:id="@+id/textName"
@@ -83,32 +81,18 @@
           app:layout_constraintTop_toBottomOf="@+id/mapView" />
 
       <CheckBox
-          android:id="@+id/checkBoxIsVisited"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:button="@drawable/checkbox_visited"
-          android:text="@string/visited"
-          app:layout_constraintBottom_toTopOf="@+id/imageLayout"
-          app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-          app:layout_constraintHorizontal_bias="0.92"
-          app:layout_constraintStart_toStartOf="@+id/linearLayout"
-          app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-          app:layout_constraintVertical_bias="0.13" />
-
-      <CheckBox
           android:id="@+id/checkBoxIsFavorite"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginEnd="66dp"
-          android:layout_marginBottom="364dp"
           android:button="@drawable/checkbox_favorite"
           android:text="@string/favorite"
-          app:layout_constraintBottom_toBottomOf="@+id/checkBoxIsVisited"
+          app:layout_constraintBottom_toTopOf="@+id/imageLayout"
           app:layout_constraintEnd_toEndOf="@+id/linearLayout"
           app:layout_constraintHorizontal_bias="0.05"
           app:layout_constraintStart_toStartOf="@+id/linearLayout"
-          app:layout_constraintTop_toTopOf="@+id/checkBoxIsVisited"
-          app:layout_constraintVertical_bias="0.0" />
+          app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+          app:layout_constraintVertical_bias="0.17000002" />
 
       <LinearLayout
           android:id="@+id/linearLayout"
@@ -124,49 +108,58 @@
           app:layout_constraintTop_toBottomOf="@+id/textDescription">
 
         <CheckBox
+            android:id="@+id/isVisited"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="17sp"
+            android:button="@drawable/visited_sel"
+            android:scaleX="2.5"
+            android:scaleY="2.5" />
+
+        <CheckBox
             android:id="@+id/star1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20sp"
+            android:layout_marginHorizontal="17sp"
             android:button="@drawable/star_sel"
-            android:scaleX="3"
-            android:scaleY="3" />
+            android:scaleX="2.5"
+            android:scaleY="2.5" />
 
         <CheckBox
             android:id="@+id/star2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20sp"
+            android:layout_marginHorizontal="17sp"
             android:button="@drawable/star_sel"
-            android:scaleX="3"
-            android:scaleY="3" />
+            android:scaleX="2.5"
+            android:scaleY="2.5" />
 
         <CheckBox
             android:id="@+id/star3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20sp"
+            android:layout_marginHorizontal="17sp"
             android:button="@drawable/star_sel"
-            android:scaleX="3"
-            android:scaleY="3" />
+            android:scaleX="2.5"
+            android:scaleY="2.5" />
 
         <CheckBox
             android:id="@+id/star4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20sp"
+            android:layout_marginHorizontal="17sp"
             android:button="@drawable/star_sel"
-            android:scaleX="3"
-            android:scaleY="3" />
+            android:scaleX="2.5"
+            android:scaleY="2.5" />
 
         <CheckBox
             android:id="@+id/star5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20sp"
+            android:layout_marginHorizontal="17sp"
             android:button="@drawable/star_sel"
-            android:scaleX="3"
-            android:scaleY="3" />
+            android:scaleX="2.5"
+            android:scaleY="2.5" />
       </LinearLayout>
 
       <com.google.android.gms.maps.MapView
