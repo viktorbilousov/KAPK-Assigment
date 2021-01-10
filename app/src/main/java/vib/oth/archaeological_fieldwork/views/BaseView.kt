@@ -2,13 +2,13 @@ package vib.oth.archaeological_fieldwork.views
 
 import android.content.Intent
 import android.os.Parcelable
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_site_list.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
+import vib.oth.archaeological_fieldwork.views.location.EditLocationView
 import vib.oth.archaeological_fieldwork.R
 import vib.oth.archaeological_fieldwork.models.Location
 import vib.oth.archaeological_fieldwork.models.Site
@@ -23,7 +23,7 @@ val IMAGE_REQUEST = 1
 val LOCATION_REQUEST = 2
 
 enum class VIEW {
-  MAPS,   LIST, LOGIN, REGISTER, FAVORITES, PROFILE, LOCATION, EDIT_SITE
+  MAPS,  LIST, LOGIN, REGISTER, FAVORITES, PROFILE, LOCATION, EDIT_SITE, EDIT_LOCATION
 }
 
 abstract class BaseView() : AppCompatActivity(), AnkoLogger {
@@ -42,6 +42,8 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
       VIEW.LOGIN -> intent = Intent(this, LoginView::class.java)
       VIEW.REGISTER -> intent = Intent(this, SingUpView::class.java)
       VIEW.EDIT_SITE -> intent = Intent(this, SiteView::class.java)
+      VIEW.EDIT_LOCATION -> intent = Intent(this, EditLocationView::class.java)
+
     }
     // ?
     if (key != "") {

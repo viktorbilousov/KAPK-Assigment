@@ -16,6 +16,7 @@ import vib.oth.archaeological_fieldwork.models.User
 import vib.oth.archaeological_fieldwork.views.BaseView
 import vib.oth.archaeological_fieldwork.views.VIEW
 
+
 class SiteView : BaseView(), AnkoLogger, ImageClickListener {
 
     lateinit var presenter: SitePresenter
@@ -35,7 +36,7 @@ class SiteView : BaseView(), AnkoLogger, ImageClickListener {
             it.setOnMapClickListener { presenter.doSetLocation() }
         }
 
-        presenter = initPresenter (SitePresenter(this)) as SitePresenter
+        presenter = initPresenter(SitePresenter(this)) as SitePresenter
         site = presenter.site
         imageAdapter = SiteImageAdapter(imageLayout, this, this)
 
@@ -50,11 +51,16 @@ class SiteView : BaseView(), AnkoLogger, ImageClickListener {
         }
 
 
+        val view : View = scrollView2
+        view.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+            if (scrollY-oldScrollY > 0 && btnSave.visibility == View.VISIBLE) {
+                btnSave.hide();
+            } else if (scrollY-oldScrollY < 0 && btnSave.visibility != View.VISIBLE) {
+                btnSave.show();
+            }
+        }
+
         showSite(site)
-    //        chooseImage.setOnClickListener {
-//            presenter.cachePlacemark(placemarkTitle.text.toString(), description.text.toString())
-//            presenter.doSelectImage()
-//        }
     }
 
     override fun showSite(site: Site) {
@@ -87,12 +93,12 @@ class SiteView : BaseView(), AnkoLogger, ImageClickListener {
         }
     }
 
-    override fun showLocation (loc : Location) {
+    override fun showLocation(loc: Location) {
         text_loc_ing.text = ("ing: " +  "%.6f".format(loc.lat))
         text_loc_inv.text = ("inv: " + "%.6f".format(loc.lng))
     }
 
-    fun showImages (site: Site, isEditable: Boolean = false) {
+    fun showImages(site: Site, isEditable: Boolean = false) {
         imageAdapter.passImages(site, isEditable)
     }
 

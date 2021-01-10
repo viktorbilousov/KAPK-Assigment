@@ -87,7 +87,7 @@ class SitePresenter(view: SiteView) : BasePresenter(view), AnkoLogger {
         }
     }
 
-    fun cachePlacemark (title: String, description: String) {
+    fun cache (title: String, description: String) {
 //        placemark.title = title;
 //        placemark.description = description
     }
@@ -141,7 +141,7 @@ class SitePresenter(view: SiteView) : BasePresenter(view), AnkoLogger {
 
     fun doSetLocation() {
         locationManualyChanged = true;
-        view?.navigateTo(VIEW.LOCATION, LOCATION_REQUEST, "location", Location(site.location))
+        view?.navigateTo(VIEW.EDIT_LOCATION, LOCATION_REQUEST, "location", Location(site.location))
     }
 
     override fun doActivityResult(requestCode: Int, resultCode: Int, data: Intent) {

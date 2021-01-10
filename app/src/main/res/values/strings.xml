@@ -25,4 +25,5 @@
     <string name="edit_site_name_hint">Name*</string>
     <string name="edit_site_description_hint">Description</string>
     <string name="edit_site_notes_hint">Notes</string>
+    <string name="menu_save">Save</string>
 </resources>
