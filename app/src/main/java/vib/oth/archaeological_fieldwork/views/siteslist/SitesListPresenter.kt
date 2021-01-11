@@ -2,33 +2,42 @@ package vib.oth.archaeological_fieldwork.views.siteslist
 
 import android.view.View
 import android.widget.CheckBox
+import kotlinx.android.synthetic.main.activity_site_view.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
+import vib.oth.archaeological_fieldwork.helpers.checkLocationPermissions
+import vib.oth.archaeological_fieldwork.models.Rating
 import vib.oth.archaeological_fieldwork.models.Site
 import vib.oth.archaeological_fieldwork.models.User
 import vib.oth.archaeological_fieldwork.views.BasePresenter
 import vib.oth.archaeological_fieldwork.views.BaseView
 import vib.oth.archaeological_fieldwork.views.VIEW
+import kotlin.random.Random
 
 class SitesListPresenter(private val siteView: BaseView) : BasePresenter(siteView)  {
 
-  fun loadSites() {
+  var isFavorite: Boolean = false;
+
+  init {
+      isFavorite = siteView.intent.hasExtra("isFavorite")
+  }
+
+
+  fun loadSites(sites: List<Site>) {
     doAsync {
-      val sites = app.sites.findAll()
       uiThread {
         siteView.showSites(sites)
       }
     }
   }
 
-  fun loadFavoriteSites(user: User) {
+
+  fun loadSites() {
     doAsync {
-      val sites = app.sites.findAll().filter { user.favoriteSites.contains(it.id) }
-      uiThread {
-        siteView.showSites(sites)
-      }
+       loadSites(getSites())
     }
   }
+
 
   fun doEditSite(site: Site) {
     view?.navigateTo(VIEW.EDIT_SITE, 0, "site_edit", site)
@@ -46,11 +55,20 @@ class SitesListPresenter(private val siteView: BaseView) : BasePresenter(siteVie
     //disable !
   }
 
-  fun doOnSearchClick(view: BaseView) {
-    //todo: implement search
-  }
 
   fun doOnAddClick(view: BaseView) {
     view.navigateTo(VIEW.EDIT_SITE)
+  }
+  fun getSites(): List<Site>{
+    var res = app.sites.findAll()
+    if(isFavorite) res = res.filter { app.currentUser.favoriteSites.contains(it.id) }
+    return res;
+  }
+
+  fun filterBy(s: String) {
+    doAsync {
+      val list = getSites().filter { it.name.contains(s) };
+      loadSites(list)
+    }
   }
 }

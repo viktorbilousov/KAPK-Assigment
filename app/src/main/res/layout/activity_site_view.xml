@@ -52,7 +52,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/textDescription"
+            android:id="@+id/textEditName"
             android:layout_width="0dp"
             android:layout_height="107dp"
             android:layout_marginTop="10dp"
@@ -110,10 +110,10 @@
             android:button="@drawable/star_sel"
             android:gravity="center"
             android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="@+id/textDescription"
+            app:layout_constraintEnd_toEndOf="@+id/textEditName"
             app:layout_constraintHorizontal_bias="0.333"
-            app:layout_constraintStart_toStartOf="@+id/textDescription"
-            app:layout_constraintTop_toBottomOf="@+id/textDescription">
+            app:layout_constraintStart_toStartOf="@+id/textEditName"
+            app:layout_constraintTop_toBottomOf="@+id/textEditName">
 
           <CheckBox
               android:id="@+id/isVisited"

@@ -4,11 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.CheckBox
+import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_site_list.*
 import org.jetbrains.anko.info
-import org.jetbrains.anko.warn
 import vib.oth.archaeological_fieldwork.R
 import vib.oth.archaeological_fieldwork.models.Site
 import vib.oth.archaeological_fieldwork.models.User
@@ -16,10 +16,11 @@ import vib.oth.archaeological_fieldwork.views.BaseView
 import vib.oth.archaeological_fieldwork.views.VIEW
 import java.util.*
 
-class SitesListView : BaseView(), SiteListener  {
+class SitesListView : BaseView(), SiteListener,  SearchListener   {
 
     lateinit var presenter: SitesListPresenter
     lateinit var currentUser: User
+    var isSearched: Boolean = false;
 //    var lastScrolledY : Int = 0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,8 +32,18 @@ class SitesListView : BaseView(), SiteListener  {
         presenter = initPresenter(SitesListPresenter(this)) as SitesListPresenter
         currentUser = presenter.app.currentUser;
 
-        bottomNavigationView.selectedItemId = R.id.discover
-        initBottomToolbar(bottomNavigationView, VIEW.LIST)
+
+
+        if(presenter.isFavorite)         {
+            initBottomToolbar(bottomNavigationView, VIEW.FAVORITES)
+            bottomNavigationView.selectedItemId = R.id.favorites
+        }
+        else   {
+            initBottomToolbar(bottomNavigationView, VIEW.LIST)
+            bottomNavigationView.selectedItemId = R.id.discover
+        }
+
+
 
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
@@ -51,19 +62,13 @@ class SitesListView : BaseView(), SiteListener  {
                 super.onScrolled(recyclerView, dx, dy)
                 if (dy > 10 && bntAdd.visibility == View.VISIBLE) {
                     bntAdd.hide();
-                    btnSearch.hide()
                 } else if (dy < 0 && bntAdd.visibility != View.VISIBLE) {
                     bntAdd.show();
-                    btnSearch.show()
                 }
 //                lastScrolledY  += dy;
 //                if(lastScrolledY <0 )   lastScrolledY =  0
             }
         })
-
-        btnSearch.setOnClickListener {
-            presenter.doOnSearchClick(this)
-        }
 
         bntAdd.setOnClickListener {
             presenter.doOnAddClick(this)
@@ -74,7 +79,7 @@ class SitesListView : BaseView(), SiteListener  {
 
 
     override fun showSites(sites: List<Site>) {
-        recyclerView.adapter = SiteAdapter(sites,  currentUser, this)
+        recyclerView.adapter = SiteAdapter(sites,  currentUser, this, this)
         recyclerView.adapter?.notifyDataSetChanged()
     }
 
@@ -97,6 +102,29 @@ class SitesListView : BaseView(), SiteListener  {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         presenter.loadSites()
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    override fun onCleanSearch() {
+        isSearched = false
+        presenter.loadSites()
+    }
+
+    override fun buttonState(): () -> Boolean = {
+       isSearched
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if(query.isNullOrEmpty()) {
+            presenter.loadSites()
+        }else {
+            presenter.filterBy(query.trim())
+        }
+        isSearched = !query.isNullOrEmpty()
+        return true
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        return true
     }
 
 }

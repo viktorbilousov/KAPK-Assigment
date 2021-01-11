@@ -16,7 +16,6 @@ import vib.oth.archaeological_fieldwork.views.login.LoginView
 import vib.oth.archaeological_fieldwork.views.map.MapView
 import vib.oth.archaeological_fieldwork.views.singup.SingUpView
 import vib.oth.archaeological_fieldwork.views.site.SiteView
-import vib.oth.archaeological_fieldwork.views.siteslist.FavoritesSitesListView
 import vib.oth.archaeological_fieldwork.views.siteslist.SitesListView
 
 
@@ -38,7 +37,6 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
 //      VIEW.LOCATION -> intent = Intent(this, EditLocationView::class.java)
 //      VIEW.PLACEMARK -> intent = Intent(this, PlacemarkView::class.java)
       VIEW.MAP -> intent = Intent(this, MapView::class.java)
-      VIEW.FAVORITES -> intent = Intent(this, FavoritesSitesListView::class.java)
       VIEW.LIST -> intent = Intent(this, SitesListView::class.java)
       VIEW.LOGIN -> intent = Intent(this, LoginView::class.java)
       VIEW.REGISTER -> intent = Intent(this, SingUpView::class.java)
@@ -97,7 +95,7 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
         getString(R.string.bottom_nav_discover) ->  if(currentView != VIEW.LIST) navigateTo(VIEW.LIST)
         getString(R.string.bottom_nav_map) ->       if(currentView != VIEW.MAP) navigateTo(VIEW.MAP)
         getString(R.string.bottom_nav_profile) ->   if(currentView != VIEW.PROFILE) navigateTo(VIEW.PROFILE)
-        getString(R.string.bottom_nav_favorites) -> if(currentView != VIEW.FAVORITES)navigateTo(VIEW.FAVORITES)
+        getString(R.string.bottom_nav_favorites) -> if(currentView != VIEW.FAVORITES)navigateTo(VIEW.LIST, 0, "isFavorite", null)
         else -> return@setOnNavigationItemSelectedListener false
       }
       return@setOnNavigationItemSelectedListener true

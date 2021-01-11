@@ -26,4 +26,19 @@
     <string name="menu_save">Save</string>
     <string name="delete_site">Delete Site</string>
     <string name="map_card_name">Site Name</string>
+    <string name="profile_btn_update">Update</string>
+    <string name="profile_total_favorites">Total Favorites</string>
+    <string name="profile_average_vote">Average Vote</string>
+    <string name="profile_total_voted">Total Voted</string>
+    <string name="profile_total_visited">Total Visited</string>
+    <string name="log_out">Log out</string>
+    <string name="register">Register</string>
+    <string name="change_password">Change Password</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="old_password">Old Password:</string>
+    <string name="new_password">New Password:</string>
+    <string name="repeat_new_password">Repeat new password:</string>
+    <string name="old_password1">Old Password</string>
+    <string name="new_password1">New Password</string>
+    <string name="repeat_new_password1">Repeat New Password</string>
 </resources>

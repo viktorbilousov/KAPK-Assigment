@@ -7,7 +7,6 @@ import android.widget.CheckBox
 import com.google.android.gms.maps.GoogleMap
 import kotlinx.android.synthetic.main.activity_site_view.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 import vib.oth.archaeological_fieldwork.R
 import vib.oth.archaeological_fieldwork.models.Location
 import vib.oth.archaeological_fieldwork.models.Rating
@@ -79,13 +78,13 @@ class SiteView : BaseView(), AnkoLogger, ImageClickListener {
     override fun showSite(site: Site) {
 
         if(site.name.isNotEmpty()) textName.setText(site.name)
-        if(site.description.isNotEmpty()) textDescription.setText(site.description)
+        if(site.description.isNotEmpty()) textEditName.setText(site.description)
 
-        textDescription.setText(site.description)
+        textEditName.setText(site.description)
         textRating.text = site.raiting.toString(true)
 
 
-        if(site.description.isNotEmpty()) textDescription.setText(site.description)
+        if(site.description.isNotEmpty()) textEditName.setText(site.description)
         
         this.presenter.setRating(Rating.Companion.Rate.parse(site.raiting.raiting.toInt())!!, true)
         this.showLocation(site.location)
@@ -95,7 +94,7 @@ class SiteView : BaseView(), AnkoLogger, ImageClickListener {
     }
 
     fun cashe(){
-        presenter.cacheSite(textName.text.toString() , textDescription.text.toString())
+        presenter.cacheSite(textName.text.toString() , textEditName.text.toString())
         presenter.cacheUser(textNotes.text.toString())
     }
 

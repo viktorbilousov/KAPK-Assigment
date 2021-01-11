@@ -19,5 +19,7 @@
     <color name="red_filter">#40C70000</color>
     <color name="gray_halo">#40E2E2E2</color>
     <color name="gray_filter">#40000000</color>
+    <color name="searchEnable">#C70000</color>
+    <color name="searchDisable">#808080</color>
 
 </resources>
