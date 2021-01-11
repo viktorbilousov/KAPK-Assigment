@@ -13,6 +13,7 @@ import vib.oth.archaeological_fieldwork.R
 import vib.oth.archaeological_fieldwork.models.Location
 import vib.oth.archaeological_fieldwork.models.Site
 import vib.oth.archaeological_fieldwork.views.login.LoginView
+import vib.oth.archaeological_fieldwork.views.map.MapView
 import vib.oth.archaeological_fieldwork.views.singup.SingUpView
 import vib.oth.archaeological_fieldwork.views.site.SiteView
 import vib.oth.archaeological_fieldwork.views.siteslist.FavoritesSitesListView
@@ -23,7 +24,7 @@ val IMAGE_REQUEST = 1
 val LOCATION_REQUEST = 2
 
 enum class VIEW {
-  MAPS,  LIST, LOGIN, REGISTER, FAVORITES, PROFILE, LOCATION, EDIT_SITE, EDIT_LOCATION
+  MAP,  LIST, LOGIN, REGISTER, FAVORITES, PROFILE, LOCATION, EDIT_SITE, EDIT_LOCATION
 }
 
 abstract class BaseView() : AppCompatActivity(), AnkoLogger {
@@ -36,7 +37,7 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
     when (view) {
 //      VIEW.LOCATION -> intent = Intent(this, EditLocationView::class.java)
 //      VIEW.PLACEMARK -> intent = Intent(this, PlacemarkView::class.java)
-//      VIEW.MAPS -> intent = Intent(this, PlacemarkMapView::class.java)
+      VIEW.MAP -> intent = Intent(this, MapView::class.java)
       VIEW.FAVORITES -> intent = Intent(this, FavoritesSitesListView::class.java)
       VIEW.LIST -> intent = Intent(this, SitesListView::class.java)
       VIEW.LOGIN -> intent = Intent(this, LoginView::class.java)
@@ -94,7 +95,7 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
     bottomNavigationView.setOnNavigationItemSelectedListener {
       when(it.toString()){
         getString(R.string.bottom_nav_discover) ->  if(currentView != VIEW.LIST) navigateTo(VIEW.LIST)
-        getString(R.string.bottom_nav_map) ->       if(currentView != VIEW.MAPS) navigateTo(VIEW.MAPS)
+        getString(R.string.bottom_nav_map) ->       if(currentView != VIEW.MAP) navigateTo(VIEW.MAP)
         getString(R.string.bottom_nav_profile) ->   if(currentView != VIEW.PROFILE) navigateTo(VIEW.PROFILE)
         getString(R.string.bottom_nav_favorites) -> if(currentView != VIEW.FAVORITES)navigateTo(VIEW.FAVORITES)
         else -> return@setOnNavigationItemSelectedListener false

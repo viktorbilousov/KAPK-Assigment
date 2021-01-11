@@ -25,4 +25,5 @@
     <string name="edit_site_notes_hint">Notes</string>
     <string name="menu_save">Save</string>
     <string name="delete_site">Delete Site</string>
+    <string name="map_card_name">Site Name</string>
 </resources>

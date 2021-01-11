@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.SearchView
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import kotlinx.android.synthetic.main.activity_edit_location.*
 import kotlinx.android.synthetic.main.activity_edit_location.view.*
@@ -12,7 +13,7 @@ import vib.oth.archaeological_fieldwork.R
 import vib.oth.archaeological_fieldwork.models.Location
 import vib.oth.archaeological_fieldwork.views.BaseView
 
-class EditLocationView : BaseView(), GoogleMap.OnMarkerDragListener, GoogleMap.OnMarkerClickListener {
+class EditLocationView : BaseView(), GoogleMap.OnMarkerDragListener, GoogleMap.OnMarkerClickListener, GoogleMap.OnMapLongClickListener {
 
   lateinit var presenter: EditLocationPresenter
 
@@ -28,6 +29,7 @@ class EditLocationView : BaseView(), GoogleMap.OnMarkerDragListener, GoogleMap.O
     mapView.getMapAsync {
       it.setOnMarkerDragListener(this)
       it.setOnMarkerClickListener(this)
+      it.setOnMapLongClickListener(this)
       presenter.doConfigureMap(it)
     }
 
@@ -77,12 +79,17 @@ class EditLocationView : BaseView(), GoogleMap.OnMarkerDragListener, GoogleMap.O
   override fun onMarkerDragStart(marker: Marker) {}
 
   override fun onMarkerDrag(marker: Marker) {
-//    lat.setText("%.6f".format(marker.position.latitude))
-//    lng.setText("%.6f".format(marker.position.longitude))
+    presenter.doUpdateMarker(marker)
   }
 
   override fun onMarkerDragEnd(marker: Marker) {
     presenter.doUpdateLocation(marker.position.latitude, marker.position.longitude)
+  }
+
+  override fun onMapLongClick(p0: LatLng?) {
+    if(p0 == null) return
+    presenter.setMarker(p0);
+    presenter.doUpdateLocation(p0.latitude, p0.longitude)
   }
 
   override fun onMarkerClick(marker: Marker): Boolean {

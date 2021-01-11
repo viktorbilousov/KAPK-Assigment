@@ -84,6 +84,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".views.site.SiteView" />
         </activity>
+
+        <activity
+            android:name=".views.map.MapView"
+            android:launchMode="singleTop">
+            <!-- android:label="@string/title_activity_register"> -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".views.siteslist.SitesListView" />
+        </activity>
+
+
+
     </application>
 
 </manifest>

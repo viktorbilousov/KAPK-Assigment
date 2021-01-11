@@ -22,7 +22,7 @@ class FavoritesSitesListView : BaseView(), SiteListener  {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_favorite_site_list)
+        setContentView(R.layout.activity_site_list)
 //        setSupportActionBar(toolbar)
 //        super.init(toolbar, false)
 //
@@ -36,6 +36,8 @@ class FavoritesSitesListView : BaseView(), SiteListener  {
         recyclerView.layoutManager = layoutManager
 
         presenter.loadFavoriteSites(currentUser)
+
+        bntAdd.hide()
 
     }
 

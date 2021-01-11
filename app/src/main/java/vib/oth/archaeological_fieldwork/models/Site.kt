@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.database.Exclude
 import kotlinx.android.parcel.Parcelize
 import java.lang.StringBuilder
@@ -109,6 +110,8 @@ data class Location(var lat: Double = 0.0,
                     var lng: Double = 0.0,
                     var zoom: Float = 0f) : Parcelable{
     constructor(loc: Location) : this(loc.lat, loc.lng, loc.zoom)
+    fun toLanLng() : LatLng = LatLng(lat, lng)
+
 }
 
 @Parcelize

@@ -9,9 +9,9 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.error
-import org.jetbrains.anko.info
+import org.jetbrains.anko.*
+import vib.oth.archaeological_fieldwork.helpers.mapSearch
+import vib.oth.archaeological_fieldwork.helpers.moveMapTo
 import vib.oth.archaeological_fieldwork.models.Location
 import vib.oth.archaeological_fieldwork.views.BasePresenter
 import vib.oth.archaeological_fieldwork.views.BaseView
@@ -22,19 +22,22 @@ class EditLocationPresenter(view: BaseView) : BasePresenter(view), AnkoLogger {
 
   var location = Location()
   lateinit var map: GoogleMap
+  private var marker: Marker? = null;
 
   init {
     location = view.intent.extras?.getParcelable("location")!!
   }
 
   fun doConfigureMap(map: GoogleMap) {
+    map.uiSettings.isZoomControlsEnabled = true
     val loc = LatLng(location.lat, location.lng)
     val options = MarkerOptions()
-      .title("Site")
-      .snippet("GPS : " + loc.toString())
+        .title("")
+//      .title("Site")
+//      .snippet("GPS : " + loc.toString())
       .draggable(true)
       .position(loc)
-    map.addMarker(options)
+    map.addMarker(options).showInfoWindow()
     map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, location.zoom))
     view?.showLocation(location);
     this.map = map
@@ -54,33 +57,30 @@ class EditLocationPresenter(view: BaseView) : BasePresenter(view), AnkoLogger {
   }
 
   fun doUpdateMarker(marker: Marker) {
-    val loc = LatLng(location.lat, location.lng)
-    marker.setSnippet("GPS : " + loc.toString())
-  }
-
-  fun moveTo(latLng: LatLng, title: String) {
-    info("move to $latLng")
-    map.addMarker(MarkerOptions().position(latLng).title(title))
-    map.animateCamera(CameraUpdateFactory.newLatLng(latLng))
+//    doAsync {
+//      uiThread {
+//        val address: Address? = mapSearch(marker.position, view!!.baseContext)
+//        if (address != null) {
+//          marker.title = address.featureName
+//          marker.snippet = "${address.locality}, ${address.adminArea}, ${address.countryName}"
+//        }
+//      }
+//    }
   }
 
   fun doOnMapSearch(locationSearch: String?) {
-    info("name = $locationSearch")
-    var addressList: List<Address>? = null
-    if (locationSearch.isNullOrEmpty()) return
-
-    val geocoder = Geocoder(view?.baseContext)
-    try {
-      addressList = geocoder.getFromLocationName(locationSearch, 1)
-    } catch (e: IOException) {
-      error(e)
-      return
-    }
-    if (addressList!!.size == 0) return
-
-    val address: Address = addressList[0]
-    moveTo(LatLng(address.latitude, address.longitude), locationSearch)
+    val address: Address = mapSearch(locationSearch, view!!.baseContext) ?: return
+    moveMapTo(LatLng(address.latitude, address.longitude), map)
     doUpdateLocation(address.latitude, address.longitude)
+    setMarker(LatLng(address.latitude, address.longitude))
+  }
+
+  fun setMarker(p0: LatLng) {
+    marker?.remove()
+    val options = MarkerOptions()
+        .draggable(true)
+        .position(p0)
+    marker = map.addMarker(options)
   }
 }
 
