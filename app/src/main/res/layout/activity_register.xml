@@ -28,7 +28,8 @@
       android:layout_height="match_parent"
 
 
-      >
+      tools:layout_editor_absoluteX="71dp"
+      tools:layout_editor_absoluteY="100dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -47,60 +48,66 @@
           app:layout_constraintTop_toTopOf="parent"
           tools:src="@mipmap/avatar" />
 
-      <ProgressBar
-          android:id="@+id/progressBar"
-          style="@style/Widget.AppCompat.ProgressBar"
-          android:layout_width="0dp"
-          android:layout_height="0dp"
-          android:layout_marginStart="103dp"
-          android:layout_marginTop="50dp"
-          android:layout_marginEnd="103dp"
-          android:layout_marginBottom="65dp"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/register" />
+
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
+          android:id="@+id/btnRemoveAvatar"
+          android:layout_width="32dp"
+          android:layout_height="31dp"
+          android:layout_marginStart="76dp"
+          android:layout_marginBottom="60dp"
+          android:backgroundTint="@color/red"
+          android:clickable="true"
+          android:scaleType="fitCenter"
+          android:scaleX="1"
+          android:scaleY="1"
+          app:fabCustomSize="30dp"
+          app:fabSize="normal"
+          app:layout_constraintBottom_toBottomOf="@+id/avatar"
+          app:layout_constraintStart_toStartOf="@+id/avatar"
+          app:maxImageSize="20dp"
+          app:srcCompat="@drawable/ic_close" />
 
       <EditText
-          android:id="@+id/email"
+          android:id="@+id/textEditEmail"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:layout_marginTop="20dp"
+          android:layout_marginTop="@dimen/space_between_fields"
           android:layout_marginBottom="14dp"
           android:ems="10"
           android:hint="@string/register_hint_e_mail"
           android:inputType="textEmailAddress"
-          app:layout_constraintBottom_toTopOf="@+id/password"
-          app:layout_constraintEnd_toEndOf="@+id/textDescription"
-          app:layout_constraintStart_toStartOf="@+id/textDescription"
-          app:layout_constraintTop_toBottomOf="@+id/textDescription" />
+          app:layout_constraintBottom_toTopOf="@+id/textEditPassword"
+          app:layout_constraintEnd_toEndOf="@+id/textEditName"
+          app:layout_constraintStart_toStartOf="@+id/textEditName"
+          app:layout_constraintTop_toBottomOf="@+id/textEditName" />
 
       <EditText
-          android:id="@+id/password"
+          android:id="@+id/textEditPassword"
           android:layout_width="0dp"
           android:layout_height="42dp"
-          android:layout_marginTop="14dp"
+          android:layout_marginTop="@dimen/space_between_fields"
           android:ems="10"
           android:hint="@string/register_hint_password"
           android:inputType="textPassword"
-          app:layout_constraintEnd_toEndOf="@+id/email"
-          app:layout_constraintStart_toStartOf="@+id/email"
-          app:layout_constraintTop_toBottomOf="@+id/email" />
+          app:layout_constraintEnd_toEndOf="@+id/textEditEmail"
+          app:layout_constraintStart_toStartOf="@+id/textEditEmail"
+          app:layout_constraintTop_toBottomOf="@+id/textEditEmail" />
 
       <Button
           android:id="@+id/register"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
+          android:layout_width="114dp"
+          android:layout_height="49dp"
           android:layout_marginStart="156dp"
           android:layout_marginTop="136dp"
           android:layout_marginEnd="167dp"
-          android:text="Register"
+          android:text="@string/register"
+          android:textSize="@dimen/font_size_big_btn"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/password" />
+          app:layout_constraintTop_toBottomOf="@+id/textEditPassword" />
 
       <EditText
-          android:id="@+id/textDescription"
+          android:id="@+id/textEditName"
           android:layout_width="0dp"
           android:layout_height="38dp"
           android:layout_marginStart="23dp"
@@ -149,8 +156,7 @@
               android:gravity="center"
               android:text="@string/gender_man"
               android:textColor="@color/white"
-              android:textSize="32sp"
-              />
+              android:textSize="32sp" />
 
           <RadioButton
               android:id="@+id/gender_girl"
@@ -175,5 +181,17 @@
 
   </androidx.core.widget.NestedScrollView>
 
+  <ProgressBar
+      android:id="@+id/progressBar"
+      style="@style/Widget.AppCompat.ProgressBar"
+      android:layout_width="196dp"
+      android:layout_height="96dp"
+      android:layout_marginStart="8dp"
+      android:layout_marginEnd="8dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/appBarLayout"
+      app:layout_constraintVertical_bias="0.9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

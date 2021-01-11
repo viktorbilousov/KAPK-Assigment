@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="profile_font_statistic_table">24sp</dimen>
+    <dimen name="profile_font_statistic_margin_left">5sp</dimen>
+    <dimen name="profile_font_statistic_margin_right">5sp</dimen>
+    <dimen name="profile_font_statistic_titel">30sp</dimen>
+    <dimen name="profile_statistic_titel">30sp</dimen>
+    <dimen name="profile_margin_table_vert">4sp</dimen>
+    <dimen name="font_size_big_btn">15sp</dimen>
+    <dimen name="font_size_normal_btn">12sp</dimen>
+    <dimen name="space_between_fields">20sp</dimen>
+    <dimen name="space_between_fields_wide">30sp</dimen>
+
+</resources>

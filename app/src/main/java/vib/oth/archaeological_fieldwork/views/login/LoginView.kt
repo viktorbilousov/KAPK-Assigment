@@ -3,8 +3,8 @@ package vib.oth.archaeological_fieldwork.views.login
 import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_login.email
-import kotlinx.android.synthetic.main.activity_login.password
+import kotlinx.android.synthetic.main.activity_login.textEditEmail
+import kotlinx.android.synthetic.main.activity_login.textEditPassword
 import kotlinx.android.synthetic.main.activity_login.progressBar
 import kotlinx.android.synthetic.main.activity_login.register
 import kotlinx.android.synthetic.main.activity_login.toolbar
@@ -27,8 +27,8 @@ class LoginView : BaseView() {
     presenter = initPresenter(LoginPresenter(this)) as LoginPresenter
 
     if(presenter.app.TEST) {
-      email.setText("test@test.com")
-      password.setText("12345678")
+      textEditEmail.setText("test@test.com")
+      textEditPassword.setText("12345678")
     }
 
 
@@ -37,8 +37,8 @@ class LoginView : BaseView() {
     }
 
     logIn.setOnClickListener {
-      val email = email.text.toString()
-      val password = password.text.toString()
+      val email = textEditEmail.text.toString()
+      val password = textEditPassword.text.toString()
       if (email == "" || password == "") {
         toast("Please provide email + password")
       }

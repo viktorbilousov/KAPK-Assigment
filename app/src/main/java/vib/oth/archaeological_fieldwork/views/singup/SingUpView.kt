@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_register.*
-import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
 import vib.oth.archaeological_fieldwork.R
 import vib.oth.archaeological_fieldwork.models.Gender
@@ -14,6 +13,7 @@ import vib.oth.archaeological_fieldwork.views.BaseView
 class SingUpView : BaseView() {
 
   lateinit var presenter: SingUpPresenter
+  val noAvatarImage = R.mipmap.avatar
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -27,19 +27,18 @@ class SingUpView : BaseView() {
 
     avatar.setOnClickListener {
       presenter.doSelectImage()
-      info("end select")
     }
 
     if(presenter.app.TEST) {
-      email.setText("${java.util.Random().nextInt(100)}test@test.com")
-      textDescription.setText("test@test.com")
-      password.setText("12345678")
+      textEditEmail.setText("${java.util.Random().nextInt(100)}test@test.com")
+      textEditName.setText("test@test.com")
+      textEditPassword.setText("12345678")
     }
 
     register.setOnClickListener {
-      val email = email.text.toString()
-      val password = password.text.toString();
-      val name = textDescription.text.toString();
+      val email = textEditEmail.text.toString()
+      val password = textEditPassword.text.toString();
+      val name = textEditName.text.toString();
 
       if(name == "") toast("Please enter your name")
       else if(email == "") toast("Please enter email")
@@ -59,6 +58,13 @@ class SingUpView : BaseView() {
     }
 
 
+    btnRemoveAvatar.setOnClickListener {
+      presenter.removeAvatar()
+      Glide.with(this).load(noAvatarImage).into(avatar);
+      btnRemoveAvatar.hide()
+    }
+
+    btnRemoveAvatar.hide()
 
   }
 
@@ -72,6 +78,7 @@ class SingUpView : BaseView() {
 
   fun updateImage(){
         Glide.with(this).load(presenter.newUser.image).into(avatar);
+        btnRemoveAvatar.show()
   }
 
 }

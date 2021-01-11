@@ -2,7 +2,9 @@ package vib.oth.archaeological_fieldwork.views.singup
 
 import android.content.Intent
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_register.view.*
 import org.jetbrains.anko.toast
+import vib.oth.archaeological_fieldwork.R
 import vib.oth.archaeological_fieldwork.helpers.showImagePicker
 import vib.oth.archaeological_fieldwork.models.Gender
 import vib.oth.archaeological_fieldwork.models.User
@@ -79,5 +81,9 @@ class SingUpPresenter(view: BaseView) : BasePresenter(view) {
 
   fun setGender(gender: Gender) {
     newUser.gender = gender;
+  }
+
+  fun removeAvatar() {
+    newUser.image = ""
   }
 }
