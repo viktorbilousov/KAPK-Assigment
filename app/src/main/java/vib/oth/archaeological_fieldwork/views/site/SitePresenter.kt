@@ -224,8 +224,8 @@ class SitePresenter(view: SiteView) : BasePresenter(view), AnkoLogger {
     }
 
     fun cacheSite(name: String, description: String) {
-        site.name = name;
-        site.description = description
+        site.name = name.trim();
+        site.description = description.trim()
     }
 
     fun updateSiteRating(){

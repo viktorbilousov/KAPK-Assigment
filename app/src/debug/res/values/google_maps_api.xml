@@ -1,24 +1,3 @@
 <resources>
-    <!--
-    TODO: Before you run your application, you need a Google Maps API key.
-
-    To get one, follow this link, follow the directions and press "Create" at the end:
-
-    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=C9:40:0B:C5:83:04:00:7E:DF:64:9F:54:C7:00:70:46:7D:E7:37:A9%3Bvib.oth.archaeological_fieldwork
-
-    You can also add your credentials to an existing key, using these values:
-
-    Package name:
-    vib.oth.archaeological_fieldwork
-
-    SHA-1 certificate fingerprint:
-    C9:40:0B:C5:83:04:00:7E:DF:64:9F:54:C7:00:70:46:7D:E7:37:A9
-
-    Alternatively, follow the directions here:
-    https://developers.google.com/maps/documentation/android/start#get-key
-
-    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
-    string in this file.
-    -->
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCEjzx43GaaSuj16IEXNpc06jGwB9845ys</string>
 </resources>

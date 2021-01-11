@@ -16,5 +16,8 @@
     <color name="nav_selected">#FFFF00</color>
     <color name="nav_unselected">#FFBB86FC</color>
     <color name="red">#C70000</color>
+    <color name="red_filter">#40C70000</color>
     <color name="gray_halo">#40E2E2E2</color>
+    <color name="gray_filter">#40000000</color>
+
 </resources>

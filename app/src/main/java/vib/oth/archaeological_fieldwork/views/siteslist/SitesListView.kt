@@ -20,7 +20,7 @@ class SitesListView : BaseView(), SiteListener  {
 
     lateinit var presenter: SitesListPresenter
     lateinit var currentUser: User
-
+//    var lastScrolledY : Int = 0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,17 +44,20 @@ class SitesListView : BaseView(), SiteListener  {
             db.create(Site(Random().nextLong(),name="test site3", description = "test site description3"))
         }
         presenter.loadSites()
-        
-        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+
+
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                if (dy > 0 && bntAdd.visibility == View.VISIBLE) {
+                if (dy > 10 && bntAdd.visibility == View.VISIBLE) {
                     bntAdd.hide();
                     btnSearch.hide()
                 } else if (dy < 0 && bntAdd.visibility != View.VISIBLE) {
                     bntAdd.show();
                     btnSearch.show()
                 }
+//                lastScrolledY  += dy;
+//                if(lastScrolledY <0 )   lastScrolledY =  0
             }
         })
 

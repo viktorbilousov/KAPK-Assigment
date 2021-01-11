@@ -162,14 +162,7 @@ class SiteImageAdapter(val relativeLayout: RelativeLayout, val context: Context,
             val btn = view.findViewById<FloatingActionButton>(buttons.flagId)
             if(index == btnIndex)   btn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(view.context, selecedBtnColor))
             else btn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(view.context, unselectedBtnColor))
-//            btn.setBackgroundColor(ContextCompat.getColor(
-//                view.context,
-//                R.color.purple_200
-//            ))
-//            btn.backgroundTintList = ContextCompat.getColorStateList(
-//                view.context,
-//                R.color.purple_200
-//            )
+
         }
         view.refreshDrawableState()
     }

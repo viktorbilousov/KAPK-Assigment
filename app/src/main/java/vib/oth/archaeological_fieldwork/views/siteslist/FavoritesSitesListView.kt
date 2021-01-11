@@ -1,5 +1,6 @@
 package vib.oth.archaeological_fieldwork.views.siteslist
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.CheckBox
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -59,6 +60,11 @@ class FavoritesSitesListView : BaseView(), SiteListener  {
 
     override fun onDetailsClick(site: Site) {
         presenter.doEditSite(site)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        presenter.loadFavoriteSites(currentUser)
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
 }

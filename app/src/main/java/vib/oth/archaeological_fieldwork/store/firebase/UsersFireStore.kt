@@ -40,7 +40,6 @@ class UsersFireStore(val context: Context) : BaseStore<User>, AnkoLogger {
       updateImage(user)
     }
   }
-  // todo 
   override fun update(user: User) {
     var foundUser: User? = users.find { p -> p.fbId == user.fbId }
     if (foundUser != null) {
@@ -59,8 +58,6 @@ class UsersFireStore(val context: Context) : BaseStore<User>, AnkoLogger {
 
     // ?
     updateImage(user)
-
-    // todo 
 
   }
 

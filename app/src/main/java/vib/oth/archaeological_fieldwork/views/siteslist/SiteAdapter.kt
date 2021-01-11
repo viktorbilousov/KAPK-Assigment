@@ -47,9 +47,8 @@ class SiteAdapter constructor(
     fun bind(site: Site, listener: SiteListener) {
       itemView.textName.text = site.name;
       itemView.textDescription.text = site.description
-      // todo fix location lat, lng -> inv , ing
-      itemView.text_loc_inv.text = "inv: ${site.location.lng.toString()}"
-      itemView.text_loc_ing.text = "ing: ${site.location.lat.toString()}"
+      itemView.text_loc_lng.text = "lng: ${"%.6f".format(site.location.lng)}"
+      itemView.text_loc_lat.text = "lat: ${"%.6f".format(site.location.lat)}"
       itemView.checkBoxIsVisited.isChecked = user.visitedSites.contains(site.id);
       itemView.checkBoxIsFavorite.isChecked = user.favoriteSites.contains(site.id);
       itemView.textRating.text = site.raiting.toString(true)

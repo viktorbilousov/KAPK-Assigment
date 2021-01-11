@@ -64,7 +64,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textName" />
 
         <TextView
-            android:id="@+id/text_loc_ing"
+            android:id="@+id/text_loc_lat"
             android:layout_width="52dp"
             android:layout_height="13dp"
             android:layout_marginStart="116dp"
@@ -77,7 +77,7 @@
             app:layout_constraintTop_toBottomOf="@+id/mapView" />
 
         <TextView
-            android:id="@+id/text_loc_inv"
+            android:id="@+id/text_loc_lng"
             android:layout_width="wrap_content"
             android:layout_height="15dp"
             android:layout_marginTop="17dp"

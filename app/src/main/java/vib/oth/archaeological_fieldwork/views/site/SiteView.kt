@@ -53,7 +53,7 @@ class SiteView : BaseView(), AnkoLogger, ImageClickListener {
 
         val view : View = scrollView2
         view.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
-            if (scrollY-oldScrollY > 0 && btnSave.visibility == View.VISIBLE) {
+            if (scrollY-oldScrollY > 10 && btnSave.visibility == View.VISIBLE) {
                 btnSave.hide();
             } else if (scrollY-oldScrollY < 0 && btnSave.visibility != View.VISIBLE) {
                 btnSave.show();
@@ -113,9 +113,8 @@ class SiteView : BaseView(), AnkoLogger, ImageClickListener {
     }
 
     override fun showLocation(loc: Location) {
-        // todo fix location lat, lng -> inv , ing
-        text_loc_ing.text = ("ing: " +  "%.6f".format(loc.lat))
-        text_loc_inv.text = ("inv: " + "%.6f".format(loc.lng))
+        text_loc_lat.text = ("lat: " +  "%.6f".format(loc.lat))
+        text_loc_lng.text = ("lng: " + "%.6f".format(loc.lng))
     }
 
     fun showImages(site: Site, isEditable: Boolean = false) {
@@ -173,7 +172,6 @@ class SiteView : BaseView(), AnkoLogger, ImageClickListener {
     }
 
     override fun onSetHead(view: View, image: String, index: Int) {
-        info("onSetHead $view $image $index")
         presenter.onSetHeadImage(image, index);
         showImages(site, true)
     }

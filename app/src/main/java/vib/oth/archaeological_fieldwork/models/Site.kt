@@ -17,6 +17,7 @@ data class Site(
     var name: String = "",
     var description: String = "",
     var images: MutableList<String> = mutableListOf(),
+    var headImageIndex: Int = -1,
     @Embedded var raiting : Rating = Rating(),
     @Embedded var location : Location = Location(),
 ): Parcelable {
@@ -28,8 +29,6 @@ data class Site(
         while(images.size > 4) images.removeAt(4)
     }
 
-    public var headImageIndex: Int = -1
-    private set;
 
 
     @get:Exclude

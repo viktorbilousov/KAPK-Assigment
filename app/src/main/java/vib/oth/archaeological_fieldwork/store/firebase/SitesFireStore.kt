@@ -30,13 +30,11 @@ class SitesFireStore(val context: Context) : BaseStore<Site>, AnkoLogger {
     key?.let {
       site.fbId = key
       sites.add(site)
-//      db.child("users").child(userId).child("sites").child(key).setValue(site)
       db.child("sites").child(key).setValue(site)
       updateImages(site)
     }
   }
 
-  // todo 
   override fun update(site: Site) {
     var foundSite: Site? = sites.find { p -> p.fbId == site.fbId }
     if (foundSite != null) {
@@ -45,6 +43,7 @@ class SitesFireStore(val context: Context) : BaseStore<Site>, AnkoLogger {
       foundSite.images = site.images
       foundSite.location = site.location
       foundSite.raiting = site.raiting;
+      foundSite.setHeadImage(site.getHeadImage() ?: "")
     }
 
 //    db.child("users").child(userId).child("sites").child(site.fbId).setValue(site)
@@ -53,7 +52,6 @@ class SitesFireStore(val context: Context) : BaseStore<Site>, AnkoLogger {
     // ?
     updateImages(site)
 
-    // todo 
 
   }
 
@@ -79,7 +77,7 @@ class SitesFireStore(val context: Context) : BaseStore<Site>, AnkoLogger {
       val fileName = File(image)
       val imageName = fileName.getName()
 
-      var imageRef = st.child(imageName) // todo test
+      var imageRef = st.child(imageName)
       val baos = ByteArrayOutputStream()
       val bitmap = readImageFromPath(context, image)
 
