@@ -35,7 +35,7 @@ class SingUpView : BaseView() {
       textEditPassword.setText("12345678")
     }
 
-    register.setOnClickListener {
+    btnUpdate_profile.setOnClickListener {
       val email = textEditEmail.text.toString()
       val password = textEditPassword.text.toString();
       val name = textEditName.text.toString();

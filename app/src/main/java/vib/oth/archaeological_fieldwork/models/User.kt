@@ -3,12 +3,14 @@ package vib.oth.archaeological_fieldwork.models
 import android.os.Parcelable
 import androidx.room.Entity
 import kotlinx.android.parcel.Parcelize
+import java.util.*
 
 
 @Parcelize
 @Entity
 data class User(
-    var id: Long = 0,
+    var id: Long = Random().nextLong(),
+    var uid: String = "",
     var fbId : String = "",
     var name: String = "",
     var email: String = "",

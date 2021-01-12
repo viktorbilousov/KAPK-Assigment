@@ -82,8 +82,11 @@ dependencies {
 
     implementation platform('com.google.firebase:firebase-bom:26.2.0')
     implementation 'com.google.firebase:firebase-database-ktx'
+//    implementation 'com.google.firebase:firebase-admin:7.1.0'
+
     // ButterKnife for view binding
     implementation 'com.jakewharton:butterknife:10.1.0'
+
 
 
 }

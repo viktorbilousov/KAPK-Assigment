@@ -3,45 +3,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".views.profile.edit.profile.ProfileEditView">
 
-  <com.google.android.material.appbar.AppBarLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="@color/colorAccent"
-      android:fitsSystemWindows="true"
-      android:id="@+id/appBarLayout"
-      app:elevation="0dip"
+  <androidx.core.widget.NestedScrollView
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      android:layout_marginBottom="55dp"
+      android:fillViewport="true"
+      app:layout_constraintBottom_toBottomOf="@+id/bottomNavigationView"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:titleTextColor="@color/colorPrimary" />
-  </com.google.android.material.appbar.AppBarLayout>
-
-  <androidx.core.widget.NestedScrollView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-
-
-      tools:layout_editor_absoluteX="71dp"
-      tools:layout_editor_absoluteY="100dp">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".views.login.LoginView">
+        android:layout_height="match_parent">
 
+      <ProgressBar
+          android:id="@+id/progressBar_profile"
+          style="@style/Widget.AppCompat.ProgressBar"
+          android:layout_width="196dp"
+          android:layout_height="96dp"
+          app:layout_constraintBottom_toTopOf="@+id/btnUpdate_profile"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.497"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/btn_ChangePassword"
+          app:layout_constraintVertical_bias="0.55" />
 
       <ImageView
           android:id="@+id/avatar"
           android:layout_width="94dp"
           android:layout_height="79dp"
-          android:layout_marginTop="70dp"
+          android:layout_marginTop="30dp"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintHorizontal_bias="0.04"
           app:layout_constraintStart_toStartOf="parent"
@@ -72,39 +67,38 @@
           android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/space_between_fields"
-          android:layout_marginBottom="14dp"
           android:ems="10"
           android:hint="@string/register_hint_e_mail"
           android:inputType="textEmailAddress"
-          app:layout_constraintBottom_toTopOf="@+id/textEditPassword"
           app:layout_constraintEnd_toEndOf="@+id/textEditName"
           app:layout_constraintStart_toStartOf="@+id/textEditName"
           app:layout_constraintTop_toBottomOf="@+id/textEditName" />
 
-      <EditText
-          android:id="@+id/textEditPassword"
-          android:layout_width="0dp"
-          android:layout_height="42dp"
-          android:layout_marginTop="@dimen/space_between_fields"
-          android:ems="10"
-          android:hint="@string/register_hint_password"
-          android:inputType="textPassword"
-          app:layout_constraintEnd_toEndOf="@+id/textEditEmail"
-          app:layout_constraintStart_toStartOf="@+id/textEditEmail"
-          app:layout_constraintTop_toBottomOf="@+id/textEditEmail" />
-
       <Button
           android:id="@+id/btnUpdate_profile"
           android:layout_width="114dp"
-          android:layout_height="49dp"
-          android:layout_marginStart="156dp"
-          android:layout_marginTop="136dp"
-          android:layout_marginEnd="167dp"
-          android:text="@string/register"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="70dp"
+          android:text="@string/profile_btn_update"
           android:textSize="@dimen/font_size_big_btn"
+          app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent" />
+
+      <Button
+          android:id="@+id/btn_ChangePassword"
+          android:layout_width="164dp"
+          android:layout_height="45dp"
+          android:layout_marginTop="20dp"
+          android:layout_marginBottom="127dp"
+          android:text="@string/change_password"
+          android:textSize="@dimen/font_size_normal_btn"
+          app:layout_constraintBottom_toTopOf="@+id/btnUpdate_profile"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.5"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/textEditPassword" />
+          app:layout_constraintTop_toBottomOf="@+id/textEditEmail"
+          app:layout_constraintVertical_bias="0.19" />
 
       <EditText
           android:id="@+id/textEditName"
@@ -123,12 +117,11 @@
       <LinearLayout
           android:layout_width="242dp"
           android:layout_height="78dp"
-          android:layout_marginTop="70dp"
           android:orientation="vertical"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintHorizontal_bias="0.77"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent">
+          app:layout_constraintTop_toTopOf="@+id/avatar">
 
         <RadioGroup
             android:id="@+id/toggle"
@@ -178,20 +171,21 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
   </androidx.core.widget.NestedScrollView>
 
-  <ProgressBar
-      android:id="@+id/progressBar"
-      style="@style/Widget.AppCompat.ProgressBar"
-      android:layout_width="196dp"
-      android:layout_height="96dp"
-      android:layout_marginStart="8dp"
-      android:layout_marginEnd="8dp"
+  <com.google.android.material.bottomnavigation.BottomNavigationView
+      android:id="@+id/bottomNavigationView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:itemIconTint="@color/colorPrimary"
+      app:itemTextColor="@color/white"
+      app:labelVisibilityMode="labeled"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="@+id/appBarLayout"
-      app:layout_constraintVertical_bias="0.9" />
+      app:menu="@menu/bottom_nav_menu">
+
+  </com.google.android.material.bottomnavigation.BottomNavigationView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

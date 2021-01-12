@@ -1,6 +1,8 @@
 package org.wit.placemark.views.login
 
 import com.google.firebase.auth.FirebaseAuth
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.error
 import org.jetbrains.anko.toast
 import vib.oth.archaeological_fieldwork.models.User
 import vib.oth.archaeological_fieldwork.store.firebase.SitesFireStore
@@ -9,7 +11,7 @@ import vib.oth.archaeological_fieldwork.views.BasePresenter
 import vib.oth.archaeological_fieldwork.views.BaseView
 import vib.oth.archaeological_fieldwork.views.VIEW
 
-class LoginPresenter(view: BaseView) : BasePresenter(view) {
+class LoginPresenter(view: BaseView) : BasePresenter(view), AnkoLogger {
 
   var auth: FirebaseAuth = FirebaseAuth.getInstance()
   var sitesStore: SitesFireStore? = null
@@ -26,14 +28,24 @@ class LoginPresenter(view: BaseView) : BasePresenter(view) {
       if (task.isSuccessful) {
         if (sitesStore != null) {
           sitesStore!!.fetch {
+
             if (usersStore != null) {
+
               usersStore!!.fetch {
-                app.setUser(usersStore!!.findAll().findLast { it.email == email }!!)
+                val user = usersStore!!.findAll().findLast { it.uid == auth.uid }
+                if(user == null){
+                  view?.toast("User not found!")
+                  error("user not found!")
+                  view?.hideProgress()
+                  return@fetch
+                }
+                app.setUser(user)
                 view?.hideProgress()
                 view?.navigateTo(VIEW.LIST)
               }
+
             } else {
-              view?.toast("Sign Up Failed: cannt fetch user")
+              view?.toast("Login Failed: cannt fetch user")
             }
           }
         } else {

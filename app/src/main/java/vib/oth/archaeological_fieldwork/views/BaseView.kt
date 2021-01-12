@@ -12,8 +12,13 @@ import vib.oth.archaeological_fieldwork.views.location.EditLocationView
 import vib.oth.archaeological_fieldwork.R
 import vib.oth.archaeological_fieldwork.models.Location
 import vib.oth.archaeological_fieldwork.models.Site
+import vib.oth.archaeological_fieldwork.models.User
 import vib.oth.archaeological_fieldwork.views.login.LoginView
 import vib.oth.archaeological_fieldwork.views.map.MapView
+import vib.oth.archaeological_fieldwork.views.profile.edit.password.EditPasswordPresenter
+import vib.oth.archaeological_fieldwork.views.profile.edit.password.EditPasswordView
+import vib.oth.archaeological_fieldwork.views.profile.edit.profile.ProfileEditView
+import vib.oth.archaeological_fieldwork.views.profile.show.ProfileView
 import vib.oth.archaeological_fieldwork.views.singup.SingUpView
 import vib.oth.archaeological_fieldwork.views.site.SiteView
 import vib.oth.archaeological_fieldwork.views.siteslist.SitesListView
@@ -23,7 +28,8 @@ val IMAGE_REQUEST = 1
 val LOCATION_REQUEST = 2
 
 enum class VIEW {
-  MAP,  LIST, LOGIN, REGISTER, FAVORITES, PROFILE, LOCATION, EDIT_SITE, EDIT_LOCATION
+  MAP, LIST, LOGIN, REGISTER, FAVORITES, PROFILE, EDIT_SITE, EDIT_LOCATION,
+  EDIT_PROFILE, EDIT_PASSWORD
 }
 
 abstract class BaseView() : AppCompatActivity(), AnkoLogger {
@@ -42,6 +48,9 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
       VIEW.REGISTER -> intent = Intent(this, SingUpView::class.java)
       VIEW.EDIT_SITE -> intent = Intent(this, SiteView::class.java)
       VIEW.EDIT_LOCATION -> intent = Intent(this, EditLocationView::class.java)
+      VIEW.PROFILE -> intent = Intent(this, ProfileView::class.java)
+      VIEW.EDIT_PROFILE -> intent = Intent(this, ProfileEditView::class.java)
+      VIEW.EDIT_PASSWORD -> intent = Intent(this, EditPasswordView::class.java)
 
     }
     // ?
@@ -90,11 +99,20 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
   }
 
   fun initBottomToolbar(bottomNavigationView: BottomNavigationView, currentView: VIEW){
+
+
+    when(currentView){
+      VIEW.LIST ->        bottomNavigationView.selectedItemId = R.id.discover
+      VIEW.PROFILE ->     bottomNavigationView.selectedItemId = R.id.profile
+      VIEW.MAP ->         bottomNavigationView.selectedItemId = R.id.map
+      VIEW.FAVORITES ->   bottomNavigationView.selectedItemId = R.id.favorites
+    }
+
     bottomNavigationView.setOnNavigationItemSelectedListener {
       when(it.toString()){
-        getString(R.string.bottom_nav_discover) ->  if(currentView != VIEW.LIST) navigateTo(VIEW.LIST)
+        getString(R.string.bottom_nav_discover) ->  if(currentView != VIEW.LIST) navigateTo(VIEW.LIST);
         getString(R.string.bottom_nav_map) ->       if(currentView != VIEW.MAP) navigateTo(VIEW.MAP)
-        getString(R.string.bottom_nav_profile) ->   if(currentView != VIEW.PROFILE) navigateTo(VIEW.PROFILE)
+        getString(R.string.bottom_nav_profile) ->   if(currentView != VIEW.PROFILE) navigateTo(VIEW.PROFILE, 0 , "current_user", basePresenter?.app?.currentUser)
         getString(R.string.bottom_nav_favorites) -> if(currentView != VIEW.FAVORITES)navigateTo(VIEW.LIST, 0, "isFavorite", null)
         else -> return@setOnNavigationItemSelectedListener false
       }
@@ -126,4 +144,5 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
   open fun hideProgress() {}
   open fun showSites(sites: List<Site>){}
   open fun showSite(site: Site){}
+  open fun showUser(user: User){}
 }

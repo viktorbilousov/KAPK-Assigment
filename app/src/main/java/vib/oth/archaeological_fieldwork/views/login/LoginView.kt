@@ -6,7 +6,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.textEditEmail
 import kotlinx.android.synthetic.main.activity_login.textEditPassword
 import kotlinx.android.synthetic.main.activity_login.progressBar
-import kotlinx.android.synthetic.main.activity_login.register
+import kotlinx.android.synthetic.main.activity_login.btnUpdate_profile
 import kotlinx.android.synthetic.main.activity_login.toolbar
 import org.jetbrains.anko.toast
 import org.wit.placemark.views.login.LoginPresenter
@@ -32,7 +32,7 @@ class LoginView : BaseView() {
     }
 
 
-    register.setOnClickListener {
+    btnUpdate_profile.setOnClickListener {
       navigateTo(VIEW.REGISTER)
     }
 

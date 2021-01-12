@@ -44,6 +44,7 @@ class SingUpPresenter(view: BaseView) : BasePresenter(view) {
                 view?.hideProgress()
                 if(userStore != null) {
                   userStore!!.fetch {
+                    newUser.uid = auth.uid?: ""
                     userStore?.create(newUser);
                     app.setUser(userStore!!.findById(newUser.id)!!)
                     view?.navigateTo(VIEW.LIST)

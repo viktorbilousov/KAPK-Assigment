@@ -36,11 +36,9 @@ class SitesListView : BaseView(), SiteListener,  SearchListener   {
 
         if(presenter.isFavorite)         {
             initBottomToolbar(bottomNavigationView, VIEW.FAVORITES)
-            bottomNavigationView.selectedItemId = R.id.favorites
         }
-        else   {
+        else  {
             initBottomToolbar(bottomNavigationView, VIEW.LIST)
-            bottomNavigationView.selectedItemId = R.id.discover
         }
 
 
