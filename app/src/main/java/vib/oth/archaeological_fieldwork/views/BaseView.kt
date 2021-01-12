@@ -73,7 +73,6 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
       onBackPressed()
     }
 
-    // todo - fix it
     supportActionBar?.setDisplayHomeAsUpEnabled(upEnabled)
 
     toolbar.setNavigationOnClickListener{
