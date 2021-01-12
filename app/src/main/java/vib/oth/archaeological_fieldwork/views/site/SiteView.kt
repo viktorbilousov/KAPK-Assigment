@@ -85,8 +85,9 @@ class SiteView : BaseView(), AnkoLogger, ImageClickListener {
 
 
         if(site.description.isNotEmpty()) textEditName.setText(site.description)
-        
-        this.presenter.setRating(Rating.Companion.Rate.parse(site.raiting.raiting.toInt())!!, true)
+
+
+        this.presenter.setRating(Rating.Companion.Rate.parse(presenter.user.getRating(site) ?: 0)!!, true)
         this.showLocation(site.location)
         this.showImages(site, true)
         showUserInfo(presenter.app.currentUser)
