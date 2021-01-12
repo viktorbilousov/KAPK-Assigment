@@ -17,7 +17,7 @@ class MainApp : Application(), AnkoLogger {
   lateinit var currentUser: User
 
 
-  final val TEST : Boolean = true;
+  final val TEST : Boolean = false;
 
   fun setUser(user: User){
     info("Set current user $user")

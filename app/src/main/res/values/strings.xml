@@ -41,4 +41,6 @@
     <string name="old_password1">Old Password</string>
     <string name="new_password1">New Password</string>
     <string name="repeat_new_password1">Repeat New Password</string>
+    <string name="titel">Project Asigmen for KAPK\nAuthor: Viktor Bilousov. \n01.21</string>
+    <string name="name">Archaeological Filedworks v1.0</string>
 </resources>
