@@ -1,15 +1,19 @@
 package vib.oth.archaeological_fieldwork.views.location
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
 import android.view.View
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import org.jetbrains.anko.*
+import vib.oth.archaeological_fieldwork.helpers.createDefaultLocationRequest
 import vib.oth.archaeological_fieldwork.helpers.mapSearch
 import vib.oth.archaeological_fieldwork.helpers.moveMapTo
 import vib.oth.archaeological_fieldwork.models.Location
