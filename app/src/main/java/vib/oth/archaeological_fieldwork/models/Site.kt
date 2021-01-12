@@ -80,7 +80,7 @@ data class Site(
     }
 
     fun removeImage(image: String) : Boolean{
-        return removeImageAt(image.indexOf(image))
+        return removeImageAt(images.indexOf(image))
     }
 
     fun getHeadImage() : String? {

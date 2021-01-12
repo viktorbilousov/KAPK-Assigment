@@ -24,6 +24,14 @@ class MainApp : Application(), AnkoLogger {
     currentUser = user
   }
 
+  fun filterNotExistedSites(user: User, sites : List<Site>) {
+    val idsString = sites.map { it.id.toString() }
+    val idsLong = sites.map { it.id }
+    user.favoriteSites = user.favoriteSites.filter { idsLong.contains(it) }.toMutableList()
+    user.givenRating = user.givenRating.filter { idsString.contains(it.key) }.toMutableMap()
+    user.notes = user.notes.filter { idsString.contains(it.key) }.toMutableMap()
+  }
+
 
   override fun onCreate() {
     super.onCreate()

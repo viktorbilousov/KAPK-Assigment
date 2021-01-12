@@ -6,6 +6,7 @@ import android.location.Geocoder
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
+import vib.oth.archaeological_fieldwork.models.Location
 import java.io.IOException
 
 fun mapSearch(locationSearch: String?, context: Context): Address? {
@@ -17,6 +18,7 @@ fun mapSearch(locationSearch: String?, context: Context): Address? {
   } catch (e: IOException) {
     return null
   }
+  if(addressList.isEmpty()) return null
   return addressList?.get(0)
 }
 
@@ -33,5 +35,9 @@ fun mapSearch(location: LatLng, context: Context): Address? {
 }
 
 fun moveMapTo(latLng: LatLng, map: GoogleMap) {
-  map.animateCamera(CameraUpdateFactory.newLatLng(latLng))
+  map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15F))
+}
+
+fun moveMapTo(location: Location, map: GoogleMap) {
+  map.animateCamera(CameraUpdateFactory.newLatLngZoom(location.toLanLng(),location.zoom))
 }

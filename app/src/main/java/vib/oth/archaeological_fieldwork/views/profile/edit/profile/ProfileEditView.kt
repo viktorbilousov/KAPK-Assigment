@@ -55,7 +55,6 @@ class ProfileEditView :  BaseView() {
 
     avatar.setOnClickListener {
       presenter.doSelectImage()
-      updateImage()
     }
 
     hideProgress()

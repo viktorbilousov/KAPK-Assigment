@@ -32,7 +32,7 @@ class SiteView : BaseView(), AnkoLogger, ImageClickListener {
         mapView.getMapAsync {
             map = it
             presenter.doConfigureMap(map)
-            it.setOnMapClickListener { presenter.doSetLocation() }
+            it.setOnMapClickListener { cashe(); presenter.doSetLocation() }
         }
 
         presenter = initPresenter(SitePresenter(this)) as SitePresenter
@@ -160,9 +160,11 @@ class SiteView : BaseView(), AnkoLogger, ImageClickListener {
     }
 
     override fun onImageClick(view: View, image: String) {
+        cashe()
         presenter.onImageClick(view, image)
     }
     override fun onAddImage(view: View) {
+        cashe()
         presenter.onAddImage(view)
     }
 

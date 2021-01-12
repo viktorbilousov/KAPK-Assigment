@@ -42,7 +42,7 @@
             android:layout_width="366dp"
             android:layout_height="45dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="8dp"
             android:gravity="center"
             android:hint="@string/edit_site_name_hint"

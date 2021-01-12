@@ -40,6 +40,7 @@ class LoginPresenter(view: BaseView) : BasePresenter(view), AnkoLogger {
                   return@fetch
                 }
                 app.setUser(user)
+                app.filterNotExistedSites(user, sitesStore!!.findAll())
                 view?.hideProgress()
                 view?.navigateTo(VIEW.LIST)
               }

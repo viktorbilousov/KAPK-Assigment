@@ -57,6 +57,7 @@ class ProfileEditPresenter(val editView: ProfileEditView) : BasePresenter(editVi
     when (requestCode) {
       IMAGE_REQUEST -> {
         user.image = data.data.toString()
+        editView.updateImage()
 //        editView.updateImage()
       }
     }

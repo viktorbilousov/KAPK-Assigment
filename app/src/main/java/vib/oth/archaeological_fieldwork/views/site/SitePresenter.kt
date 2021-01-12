@@ -52,6 +52,7 @@ class SitePresenter(view: SiteView) : BasePresenter(view), AnkoLogger {
                 doSetCurrentLocation()
             }
             oldUserVote = Rating.Companion.Rate.parse(app.currentUser.getRating(site) ?: 0 )!!
+            doSetCurrentLocation()
         }
 
         user = app.currentUser

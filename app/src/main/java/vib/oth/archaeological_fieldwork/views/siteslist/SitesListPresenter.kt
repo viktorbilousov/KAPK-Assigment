@@ -12,6 +12,7 @@ import vib.oth.archaeological_fieldwork.models.User
 import vib.oth.archaeological_fieldwork.views.BasePresenter
 import vib.oth.archaeological_fieldwork.views.BaseView
 import vib.oth.archaeological_fieldwork.views.VIEW
+import java.util.*
 import kotlin.random.Random
 
 class SitesListPresenter(private val siteView: BaseView) : BasePresenter(siteView)  {
@@ -67,7 +68,7 @@ class SitesListPresenter(private val siteView: BaseView) : BasePresenter(siteVie
 
   fun filterBy(s: String) {
     doAsync {
-      val list = getSites().filter { it.name.contains(s) };
+      val list = getSites().filter { it.name.toLowerCase(Locale.ROOT).contains(s.toLowerCase(Locale.ROOT)) };
       loadSites(list)
     }
   }
