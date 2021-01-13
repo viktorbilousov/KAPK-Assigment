@@ -17,6 +17,7 @@ import vib.oth.archaeological_fieldwork.models.Site
 import vib.oth.archaeological_fieldwork.views.BasePresenter
 import vib.oth.archaeological_fieldwork.views.BaseView
 import vib.oth.archaeological_fieldwork.views.VIEW
+import java.util.*
 
 
 class MapPresenter(view: BaseView) : BasePresenter(view) {
@@ -69,7 +70,7 @@ class MapPresenter(view: BaseView) : BasePresenter(view) {
   fun doOnMapSearch(locationSearch: String?) {
     if(locationSearch == null) return
 
-    val site = sites.findLast { it.name.contains(locationSearch) };
+    val site = sites.findLast { it.name.toLowerCase(Locale.ROOT).contains(locationSearch.toLowerCase(Locale.ROOT)) };
     val marker = markers.findLast { it.position == site?.location?.toLanLng() }
     if(marker != null && site != null) {
       moveMapTo(LatLng(site.location.lat, site.location.lng), map)
