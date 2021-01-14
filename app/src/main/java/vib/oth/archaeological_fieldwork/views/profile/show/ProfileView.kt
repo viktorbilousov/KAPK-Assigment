@@ -51,7 +51,7 @@ class ProfileView:  BaseView() {
      totalMarked.text = user.favoriteSites.size.toString()
      textTotalVisited.text = user.visitedSites.size.toString()
      textTotalVoted.text = user.givenRating.size.toString()
-     var average =user.givenRating.map { it.value }.average();
+     var average =user.givenRating.filter { it.value > 0 }.map { it.value }.average();
      if(average.isNaN()) average = 0.0;
      averageVote.text = "%.2f".format(average)
    }

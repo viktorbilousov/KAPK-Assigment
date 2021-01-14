@@ -36,6 +36,7 @@ class SitesListView : BaseView(), SiteListener,  SearchListener   {
 
         if(presenter.isFavorite)         {
             initBottomToolbar(bottomNavigationView, VIEW.FAVORITES)
+            bntAdd.hide()
         }
         else  {
             initBottomToolbar(bottomNavigationView, VIEW.LIST)
@@ -58,6 +59,8 @@ class SitesListView : BaseView(), SiteListener,  SearchListener   {
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
+                if(presenter.isFavorite) return
+
                 if (dy > 10 && bntAdd.visibility == View.VISIBLE) {
                     bntAdd.hide();
                 } else if (dy < 0 && bntAdd.visibility != View.VISIBLE) {

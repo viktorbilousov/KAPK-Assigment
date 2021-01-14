@@ -103,6 +103,7 @@ class SiteView : BaseView(), AnkoLogger, ImageClickListener {
     fun showUserInfo(user: User){
         showStars(user.getRating(site) ?: 0)
         isVisited.isChecked = user.visitedSites.contains(site.id)
+        checkBoxIsFavorite.isChecked = user.favoriteSites.contains(site.id)
         if(user.getNote(site) != null) textNotes.text = user.getNote(site)
     }
 

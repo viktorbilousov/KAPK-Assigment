@@ -34,10 +34,16 @@ class ProfilePresenter(view: BaseView) : BasePresenter(view), AnkoLogger {
 
   fun doRemoveUser() {
     doAsync {
+      FirebaseAuth.getInstance().currentUser!!.reauthenticate(app.credential).addOnSuccessListener {
+        FirebaseAuth.getInstance().currentUser!!.delete()
+      }.addOnFailureListener {
+        error("cant remove user account")
+      }
       app.users.delete(user)
-      FirebaseAuth.getInstance().currentUser?.delete()
     }
     signOut()
+    val user = FirebaseAuth.getInstance().currentUser;
+
   }
 
   fun doEdit() {

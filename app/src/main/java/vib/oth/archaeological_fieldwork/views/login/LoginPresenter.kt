@@ -1,5 +1,6 @@
 package org.wit.placemark.views.login
 
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.error
@@ -39,7 +40,7 @@ class LoginPresenter(view: BaseView) : BasePresenter(view), AnkoLogger {
                   view?.hideProgress()
                   return@fetch
                 }
-                app.setUser(user)
+                app.setUser(user, EmailAuthProvider.getCredential(email, password))
                 app.filterNotExistedSites(user, sitesStore!!.findAll())
                 view?.hideProgress()
                 view?.navigateTo(VIEW.LIST)
