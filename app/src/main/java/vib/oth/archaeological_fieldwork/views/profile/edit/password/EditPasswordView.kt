@@ -23,7 +23,7 @@ class EditPasswordView :  BaseView() {
 
     initBottomToolbar(bottomNavigationView, VIEW.EDIT_PROFILE)
 
-    btnUpdatePassword.setOnClickListener {
+    btn_cancelDialog.setOnClickListener {
 
       presenter.doChangePassword(
         editTextPassword.text.toString(),

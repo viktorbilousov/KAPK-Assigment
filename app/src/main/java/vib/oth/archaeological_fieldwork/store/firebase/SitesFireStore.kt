@@ -38,6 +38,7 @@ class SitesFireStore(val context: Context) : BaseStore<Site>, AnkoLogger {
   override fun update(site: Site) {
     var foundSite: Site? = sites.find { p -> p.fbId == site.fbId }
     if (foundSite != null) {
+      foundSite.id = site.id
       foundSite.name = site.name
       foundSite.description = site.description
       foundSite.images = site.images
@@ -66,9 +67,6 @@ class SitesFireStore(val context: Context) : BaseStore<Site>, AnkoLogger {
   }
 
   fun updateImages(site: Site) {
-
-    site.images.findLast { it != null } ?: return;
-
 
     site.images.forEachIndexed { index, image ->
 

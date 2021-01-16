@@ -122,6 +122,7 @@ class SitePresenter(view: SiteView) : BasePresenter(view), AnkoLogger {
                 app.sites.create(site)
             }
             app.users.update(user)
+            app.currentUser = user;
             uiThread {
                 view?.finish()
             }
@@ -206,7 +207,11 @@ class SitePresenter(view: SiteView) : BasePresenter(view), AnkoLogger {
         if(isSource){
             oldUserVote = vote
         }
-        user.setUserRating(site, vote)
+        if(vote == Rating.Companion.Rate.ZERO){
+            user.removeUserRating(site)
+        }else {
+            user.setUserRating(site, vote)
+        }
     }
 
     fun doOnClickSetVisited(checkBox: CheckBox) {
@@ -221,7 +226,8 @@ class SitePresenter(view: SiteView) : BasePresenter(view), AnkoLogger {
     }
 
     fun cacheUser(note: String) {
-        user.setUserNote(site, note)
+        if(note.isNotEmpty())   user.setUserNote(site, note)
+        else user.removeUserNote(site)
     }
 
     fun cacheSite(name: String, description: String) {

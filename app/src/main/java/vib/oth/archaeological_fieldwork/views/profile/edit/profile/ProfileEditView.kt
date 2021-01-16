@@ -82,8 +82,6 @@ class ProfileEditView :  BaseView() {
   fun cacheUser(){
     user.name = textEditName.text.toString()
     val newEmail = textEditEmail.text.toString().trim()
-    presenter.emailChanged = user.email != newEmail
-
     user.email = newEmail
   }
 

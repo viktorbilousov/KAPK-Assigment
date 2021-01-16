@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.location.Address
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
@@ -38,7 +37,7 @@ class MapPresenter(view: BaseView) : BasePresenter(view) {
           .position(loc)
       val marker = map.addMarker(options);
       marker.tag = it
-      marker.showInfoWindow()
+      //marker.showInfoWindow()
       markers.add(marker)
     }
     moveToCurrentLocation()
@@ -84,6 +83,7 @@ class MapPresenter(view: BaseView) : BasePresenter(view) {
   @SuppressLint("MissingPermission")
   fun moveToCurrentLocation() {
     locationService.lastLocation.addOnSuccessListener {
+      if (it == null) return@addOnSuccessListener
       moveMapTo(LatLng(it.latitude, it.longitude), map)
     }
   }

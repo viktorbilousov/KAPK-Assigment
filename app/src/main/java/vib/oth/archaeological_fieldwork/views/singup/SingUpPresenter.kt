@@ -1,11 +1,8 @@
 package vib.oth.archaeological_fieldwork.views.singup
 
 import android.content.Intent
-import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_register.view.*
 import org.jetbrains.anko.toast
-import vib.oth.archaeological_fieldwork.R
 import vib.oth.archaeological_fieldwork.helpers.showImagePicker
 import vib.oth.archaeological_fieldwork.models.Gender
 import vib.oth.archaeological_fieldwork.models.User
@@ -47,7 +44,7 @@ class SingUpPresenter(view: BaseView) : BasePresenter(view) {
                   userStore!!.fetch {
                     newUser.uid = auth.uid?: ""
                     userStore?.create(newUser);
-                    app.setUser(userStore!!.findById(newUser.id)!!, EmailAuthProvider.getCredential(email, password))
+                    app.setUser(userStore!!.findById(newUser.id)!!)
                     view?.navigateTo(VIEW.LIST)
                   }
                 }else {

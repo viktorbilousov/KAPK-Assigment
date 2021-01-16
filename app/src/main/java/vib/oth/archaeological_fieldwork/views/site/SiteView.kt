@@ -39,7 +39,7 @@ class SiteView : BaseView(), AnkoLogger, ImageClickListener {
         site = presenter.site
         imageAdapter = SiteImageAdapter(imageLayout, this, this)
 
-       stars = arrayOf(star1, star2, star3, star4, star5)
+        stars = arrayOf(star1, star2, star3, star4, star5)
        stars.forEach { checkbox ->
            checkbox.setOnClickListener {
                 presenter.doOnClickStar(checkbox);
@@ -84,19 +84,15 @@ class SiteView : BaseView(), AnkoLogger, ImageClickListener {
         textRating.text = site.raiting.toString(true)
 
 
-        if(site.description.isNotEmpty()) textEditName.setText(site.description)
-
-
         this.presenter.setRating(Rating.Companion.Rate.parse(presenter.user.getRating(site) ?: 0)!!, true)
         this.showLocation(site.location)
         this.showImages(site, true)
         showUserInfo(presenter.app.currentUser)
 
     }
-
     fun cashe(){
         presenter.cacheSite(textName.text.toString() , textEditName.text.toString())
-        presenter.cacheUser(textNotes.text.toString())
+        presenter.cacheUser(textYourNotes.text.toString().trim())
     }
 
 
@@ -104,7 +100,7 @@ class SiteView : BaseView(), AnkoLogger, ImageClickListener {
         showStars(user.getRating(site) ?: 0)
         isVisited.isChecked = user.visitedSites.contains(site.id)
         checkBoxIsFavorite.isChecked = user.favoriteSites.contains(site.id)
-        if(user.getNote(site) != null) textNotes.text = user.getNote(site)
+        textYourNotes.setText(user.getNote(site) ?: "")
     }
 
     fun showStars(number: Int){

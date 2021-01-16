@@ -85,6 +85,10 @@ data class Site(
 
     fun getHeadImage() : String? {
         if(headImageIndex < 0) return null
+        if(images.size == 0 ){
+            headImageIndex = -1;
+            return null
+        }
         return images[headImageIndex]
     }
 

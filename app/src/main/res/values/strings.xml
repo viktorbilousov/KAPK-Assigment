@@ -9,7 +9,7 @@
     <string name="bottom_nav_discover">Discover</string>
     <string name="bottom_nav_map">Map</string>
     <string name="bottom_nav_favorites">Favorites</string>
-    <string name="bottom_nav_profile">Profil</string>
+    <string name="bottom_nav_profile">Profile</string>
     <string name="favorite">Favorite</string>
     <string name="visited">Visited</string>
     <string name="details">Details</string>
@@ -43,4 +43,5 @@
     <string name="repeat_new_password1">Repeat New Password</string>
     <string name="titel">Project Asigmen for KAPK\nAuthor: Viktor Bilousov. \n01.21</string>
     <string name="name">Archaeological Filedworks v1.0</string>
+    <string name="delete">Delete</string>
 </resources>

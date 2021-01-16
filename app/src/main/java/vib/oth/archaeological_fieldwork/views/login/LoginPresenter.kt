@@ -1,11 +1,9 @@
 package org.wit.placemark.views.login
 
-import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.error
 import org.jetbrains.anko.toast
-import vib.oth.archaeological_fieldwork.models.User
 import vib.oth.archaeological_fieldwork.store.firebase.SitesFireStore
 import vib.oth.archaeological_fieldwork.store.firebase.UsersFireStore
 import vib.oth.archaeological_fieldwork.views.BasePresenter
@@ -40,7 +38,7 @@ class LoginPresenter(view: BaseView) : BasePresenter(view), AnkoLogger {
                   view?.hideProgress()
                   return@fetch
                 }
-                app.setUser(user, EmailAuthProvider.getCredential(email, password))
+                app.setUser(user)
                 app.filterNotExistedSites(user, sitesStore!!.findAll())
                 view?.hideProgress()
                 view?.navigateTo(VIEW.LIST)

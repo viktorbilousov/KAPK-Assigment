@@ -1,8 +1,6 @@
 package vib.oth.archaeological_fieldwork.main
 
 import android.app.Application
-import com.google.firebase.auth.AuthCredential
-import com.google.firebase.auth.EmailAuthProvider
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import vib.oth.archaeological_fieldwork.models.Site
@@ -17,15 +15,13 @@ class MainApp : Application(), AnkoLogger {
   lateinit var sites: BaseStore<Site>
   lateinit var users: BaseStore<User>
   lateinit var currentUser: User
-  lateinit var credential : AuthCredential
 
 
   final val TEST : Boolean = false;
 
-  fun setUser(user: User, credential : AuthCredential ){
+  fun setUser(user: User){
     info("Set current user $user")
     currentUser = user
-    this.credential = credential;
   }
 
   fun filterNotExistedSites(user: User, sites: List<Site>) {

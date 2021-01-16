@@ -16,7 +16,6 @@ class ProfileEditPresenter(val editView: ProfileEditView) : BasePresenter(editVi
 
 
   val user : User
-  var emailChanged : Boolean = false
 
 
   init {
@@ -81,6 +80,6 @@ class ProfileEditPresenter(val editView: ProfileEditView) : BasePresenter(editVi
   }
 
   fun updateEmail(){
-    if(emailChanged)  FirebaseAuth.getInstance().currentUser?.updateEmail(user.email)
+      FirebaseAuth.getInstance().currentUser?.updateEmail(user.email)
   }
 }
